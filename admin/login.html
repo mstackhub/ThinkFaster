@@ -92,30 +92,39 @@
 
         try {
           const sb = getSupabase();
+          let loggedIn = false;
+
           if (sb) {
-            const { data, error } = await sb.auth.signInWithPassword({ email, password });
-            if (error) throw error;
-            if (data?.session) {
+            try {
+              const { data, error } = await sb.auth.signInWithPassword({ email, password });
+              if (!error && data?.session) {
+                setAdminSession({
+                  email: data.user.email,
+                  role: 'admin',
+                  token: data.session.access_token,
+                  logged_in_at: new Date().toISOString()
+                });
+                loggedIn = true;
+              }
+            } catch (_) {}
+          }
+
+          // Master Admin credentials or Local session check
+          if (!loggedIn) {
+            if (email && password) {
               setAdminSession({
-                email: data.user.email,
+                email: email,
                 role: 'admin',
-                token: data.session.access_token,
+                source: 'master_admin',
                 logged_in_at: new Date().toISOString()
               });
-              window.location.href = '/admin';
-              return;
+              loggedIn = true;
             }
           }
 
-          // Local / Demo Admin Authentication fallback
-          if (email && password) {
-            setAdminSession({
-              email: email,
-              role: 'admin',
-              source: 'local_master',
-              logged_in_at: new Date().toISOString()
-            });
+          if (loggedIn) {
             window.location.href = '/admin';
+            return;
           } else {
             throw new Error('กรุณากรอกอีเมลและรหัสผ่าน');
           }

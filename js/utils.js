@@ -226,3 +226,146 @@ export function showToast(message, type = 'success', duration = 3000) {
     }, 300);
   }, duration);
 }
+
+/**
+ * Format inline Markdown syntax (**bold**, *italic*, `code`)
+ */
+export function formatInlineMarkdown(text) {
+  if (!text) return '';
+  let res = escapeHTML(text);
+
+  // Bold: **text** or __text__
+  res = res.replace(/\*\*(.+?)\*\*/g, '<strong class="font-bold text-slate-900">$1</strong>');
+  res = res.replace(/__(.+?)__/g, '<strong class="font-bold text-slate-900">$1</strong>');
+
+  // Italic: *text* or _text_
+  res = res.replace(/\*([^\*]+?)\*/g, '<em class="italic text-slate-800">$1</em>');
+  res = res.replace(/_([^_]+?)_/g, '<em class="italic text-slate-800">$1</em>');
+
+  // Inline code: `code`
+  res = res.replace(/`([^`]+?)`/g, '<code class="px-1.5 py-0.5 rounded bg-slate-100 font-mono text-xs text-blue-700 font-semibold">$1</code>');
+
+  return res;
+}
+
+/**
+ * Convert multiline plain text / Markdown overview into structured styled HTML
+ * Handles: **bold**, bullet items (•, -, *), numbered steps (1., 2.), headings (#, ##), and demo accounts
+ */
+export function formatOverviewHTML(rawText) {
+  if (!rawText || !rawText.trim()) {
+    return '<p class="text-slate-400 text-sm">ไม่มีรายละเอียดเพิ่มเติม</p>';
+  }
+
+  const blocks = rawText.split(/\r?\n\r?\n/);
+  const renderedBlocks = [];
+
+  for (const block of blocks) {
+    const trimmedBlock = block.trim();
+    if (!trimmedBlock) continue;
+
+    const lines = trimmedBlock.split(/\r?\n/);
+
+    // Check for Demo Account Box
+    const isDemoBlock = lines[0].toLowerCase().startsWith('demo') ||
+      (lines.some(l => /^user\s*:/i.test(l.trim())) && lines.some(l => /^pass/i.test(l.trim())));
+
+    if (isDemoBlock) {
+      let title = 'ข้อมูลสำหรับทดลองใช้งาน Demo';
+      const credLines = [];
+
+      for (const line of lines) {
+        const l = line.trim();
+        if (/^demo/i.test(l)) {
+          title = formatInlineMarkdown(l);
+        } else if (l) {
+          credLines.push(formatInlineMarkdown(l));
+        }
+      }
+
+      renderedBlocks.push(`
+        <div class="my-5 p-4 sm:p-5 rounded-2xl bg-slate-900 text-white shadow-md border border-slate-800">
+          <div class="font-bold text-sm sm:text-base text-blue-400 flex items-center gap-2 mb-2.5">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"/>
+            </svg>
+            <span>${title}</span>
+          </div>
+          <div class="space-y-1.5 font-mono text-xs sm:text-sm text-slate-200 bg-slate-800/90 p-3 rounded-xl border border-slate-700/70 select-all leading-relaxed">
+            ${credLines.join('<br>')}
+          </div>
+        </div>
+      `);
+      continue;
+    }
+
+    // Process mixed lines
+    let inList = false;
+    let listItemsHTML = '';
+    let blockHTML = '';
+
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i].trim();
+      if (!line) continue;
+
+      const bulletMatch = line.match(/^([•\-\*\+\—])\s*(.*)$/);
+      const numberMatch = line.match(/^(\d+[\.\)])\s*(.*)$/);
+      const headingMatch = line.match(/^(#{1,4})\s*(.*)$/);
+
+      if (bulletMatch) {
+        if (!inList) {
+          inList = true;
+          listItemsHTML = '';
+        }
+        const content = formatInlineMarkdown(bulletMatch[2]);
+        listItemsHTML += `
+          <li class="flex items-start gap-2.5 my-2 text-slate-700 text-sm sm:text-base leading-relaxed">
+            <span class="w-2 h-2 rounded-full bg-blue-600 shrink-0 mt-2"></span>
+            <span class="flex-1">${content}</span>
+          </li>
+        `;
+      } else {
+        if (inList) {
+          blockHTML += `<ul class="my-2 space-y-1 pl-1">${listItemsHTML}</ul>`;
+          inList = false;
+          listItemsHTML = '';
+        }
+
+        if (numberMatch) {
+          const num = numberMatch[1];
+          const content = formatInlineMarkdown(numberMatch[2]);
+          blockHTML += `
+            <div class="font-bold text-slate-900 text-sm sm:text-base mt-4 mb-1.5 flex items-start gap-2.5">
+              <span class="inline-flex items-center justify-center min-w-[24px] h-[24px] px-1 rounded-md bg-blue-100 text-blue-700 text-xs font-bold shrink-0 mt-0.5">${num}</span>
+              <span class="flex-1 leading-snug">${content}</span>
+            </div>
+          `;
+        } else if (headingMatch) {
+          const level = headingMatch[1].length;
+          const content = formatInlineMarkdown(headingMatch[2]);
+          const cls = level === 1 ? 'text-lg sm:text-xl font-extrabold text-slate-900 mt-6 mb-3' :
+                      level === 2 ? 'text-base sm:text-lg font-bold text-slate-900 mt-5 mb-2' :
+                      'text-sm sm:text-base font-bold text-slate-900 mt-4 mb-1.5';
+          blockHTML += `<h${level + 1} class="${cls}">${content}</h${level + 1}>`;
+        } else {
+          // Check if line looks like a bold header (e.g. "6 จุดเด่นสำคัญ..." or wrapped in **)
+          const isLeadHeader = /^\d+\s*จุดเด่น/i.test(line) || /^จุดเด่น/i.test(line) || /^ฟีเจอร์/i.test(line);
+          const content = formatInlineMarkdown(line);
+          if (isLeadHeader) {
+            blockHTML += `<div class="font-bold text-slate-900 text-sm sm:text-base mt-4 mb-2">${content}</div>`;
+          } else {
+            blockHTML += `<p class="mb-3 leading-relaxed text-slate-700 text-sm sm:text-base">${content}</p>`;
+          }
+        }
+      }
+    }
+
+    if (inList) {
+      blockHTML += `<ul class="my-2 space-y-1 pl-1">${listItemsHTML}</ul>`;
+    }
+
+    renderedBlocks.push(blockHTML);
+  }
+
+  return renderedBlocks.join('');
+}

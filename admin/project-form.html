@@ -379,15 +379,55 @@
 
           <!-- Full Description -->
           <div>
-            <label for="field-full-desc" class="block text-xs font-bold text-slate-700 mb-1">
-              รายละเอียดเต็ม (Full Overview)
-            </label>
+            <div class="flex items-center justify-between mb-1.5 flex-wrap gap-2">
+              <label for="field-full-desc" class="block text-xs font-bold text-slate-700">
+                รายละเอียดเต็ม (Full Overview)
+              </label>
+              <!-- Formatting Toolbar -->
+              <div class="flex items-center gap-1.5 flex-wrap">
+                <button
+                  type="button"
+                  id="btn-format-bold"
+                  class="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 active:bg-slate-300 text-slate-700 text-xs font-bold transition-colors cursor-pointer border border-slate-200/60"
+                  title="ข้อความตัวหนา (**ข้อความ**)"
+                >
+                  <span class="font-extrabold">B</span> ตัวหนา
+                </button>
+                <button
+                  type="button"
+                  id="btn-format-bullet"
+                  class="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 active:bg-slate-300 text-slate-700 text-xs font-medium transition-colors cursor-pointer border border-slate-200/60"
+                  title="ใส่จุดหัวข้อ (•)"
+                >
+                  • Bullet
+                </button>
+                <button
+                  type="button"
+                  id="btn-format-number"
+                  class="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 active:bg-slate-300 text-slate-700 text-xs font-medium transition-colors cursor-pointer border border-slate-200/60"
+                  title="ใส่ลำดับเลข (1. 2.)"
+                >
+                  1. ลำดับ
+                </button>
+                <button
+                  type="button"
+                  id="btn-format-demo"
+                  class="px-2.5 py-1 rounded-lg bg-blue-50 hover:bg-blue-100 active:bg-blue-200 text-blue-700 text-xs font-medium transition-colors cursor-pointer border border-blue-200/80"
+                  title="แทรกกล่องข้อมูลทดสอบระบบ"
+                >
+                  🔑 ข้อมูล Demo
+                </button>
+              </div>
+            </div>
             <textarea
               id="field-full-desc"
-              rows="5"
-              placeholder="เขียนอธิบายภาพรวมของระบบ จุดเด่น และประโยชน์ที่ลูกค้าจะได้รับ..."
-              class="w-full text-xs sm:text-sm rounded-xl border border-slate-200 px-3.5 py-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500 leading-relaxed"
+              rows="7"
+              placeholder="เขียนอธิบายภาพรวมของระบบ จุดเด่น และประโยชน์ที่ลูกค้าจะได้รับ...&#10;รองรับ **ตัวหนา**, จุดหัวข้อ • หรือ -, ลำดับ 1. 2. 3. และการเคาะบรรทัด"
+              class="w-full text-xs sm:text-sm rounded-xl border border-slate-200 px-3.5 py-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500 leading-relaxed font-mono"
             ></textarea>
+            <p class="mt-1.5 text-[11px] text-slate-500">
+              💡 ระบบแปลง <code class="text-blue-600 font-bold bg-blue-50 px-1 py-0.5 rounded">**ตัวหนา**</code>, จุด <code class="text-blue-600 font-bold bg-blue-50 px-1 py-0.5 rounded">•</code> หัวข้อย่อย, ลำดับ <code class="text-blue-600 font-bold bg-blue-50 px-1 py-0.5 rounded">1. 2. 3.</code> และกล่องข้อมูล Demo ให้สวยงามอัตโนมัติ
+            </p>
           </div>
         </div>
 

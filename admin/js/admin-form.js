@@ -282,6 +282,42 @@ function setupEventListeners() {
     }
   });
 
+  // Overview Formatting Toolbar Helpers
+  const fullDescInput = document.getElementById('field-full-desc');
+  const insertTextAtCursor = (textBefore, textAfter = '') => {
+    if (!fullDescInput) return;
+    fullDescInput.focus();
+    const start = fullDescInput.selectionStart;
+    const end = fullDescInput.selectionEnd;
+    const selected = fullDescInput.value.substring(start, end);
+    const replacement = textBefore + selected + textAfter;
+    fullDescInput.value = fullDescInput.value.substring(0, start) + replacement + fullDescInput.value.substring(end);
+    fullDescInput.selectionStart = start + textBefore.length;
+    fullDescInput.selectionEnd = start + textBefore.length + selected.length;
+  };
+
+  document.getElementById('btn-format-bold')?.addEventListener('click', () => {
+    insertTextAtCursor('**', '**');
+  });
+
+  document.getElementById('btn-format-bullet')?.addEventListener('click', () => {
+    const val = fullDescInput?.value || '';
+    const prefix = val.length > 0 && !val.endsWith('\n') ? '\n• ' : '• ';
+    insertTextAtCursor(prefix, '');
+  });
+
+  document.getElementById('btn-format-number')?.addEventListener('click', () => {
+    const val = fullDescInput?.value || '';
+    const prefix = val.length > 0 && !val.endsWith('\n') ? '\n1. ' : '1. ';
+    insertTextAtCursor(prefix, '');
+  });
+
+  document.getElementById('btn-format-demo')?.addEventListener('click', () => {
+    const val = fullDescInput?.value || '';
+    const prefix = val.length > 0 && !val.endsWith('\n') ? '\n\n' : '';
+    insertTextAtCursor(prefix + 'Demo\nUser: owner@somtumhouse.com\nPassword: P@ssword123\n', '');
+  });
+
   // Cover Image File Upload (Client-side Canvas compression)
   const coverFileInput = document.getElementById('field-cover-file');
   coverFileInput?.addEventListener('change', async (e) => {

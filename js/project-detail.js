@@ -9,7 +9,7 @@ import { renderFloatingContact } from './components/floating-contact.js';
 import { renderCookieBanner } from './components/cookie-banner.js';
 import { createProjectCardHTML } from './components/project-card.js';
 import { openLightbox } from './components/lightbox.js';
-import { formatCurrency, escapeHTML, copyToClipboard, showToast } from './utils.js';
+import { formatCurrency, escapeHTML, copyToClipboard, showToast, formatOverviewHTML } from './utils.js';
 import { trackEvent, initTracking } from './tracking.js';
 
 let currentProject = null;
@@ -183,18 +183,8 @@ function renderProjectDetail(p) {
   // 5. Overview & Descriptions
   const overviewEl = document.getElementById('detail-overview');
   if (overviewEl) {
-    const rawText = (p.full_description || p.short_description || '').trim();
-    if (!rawText) {
-      overviewEl.innerHTML = '<p class="text-slate-400 text-sm">ไม่มีรายละเอียดเพิ่มเติม</p>';
-    } else {
-      const paragraphs = rawText.split(/\r?\n\r?\n/);
-      overviewEl.innerHTML = paragraphs
-        .map(para => {
-          const lines = para.split(/\r?\n/).map(line => escapeHTML(line)).join('<br>');
-          return `<p class="mb-4 leading-relaxed text-slate-700">${lines}</p>`;
-        })
-        .join('');
-    }
+    const rawText = p.full_description || p.short_description || '';
+    overviewEl.innerHTML = formatOverviewHTML(rawText);
   }
 
   // 6. Features List

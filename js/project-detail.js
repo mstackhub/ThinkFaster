@@ -142,6 +142,21 @@ function renderProjectDetail(p) {
     viewsEl.textContent = totalViews >= 1000 ? (totalViews / 1000).toFixed(1) + 'k' : totalViews.toLocaleString('th-TH');
   }
 
+  // Price Display
+  const currentPriceEl = document.getElementById('detail-current-price');
+  const regularPriceEl = document.getElementById('detail-regular-price');
+  if (currentPriceEl) {
+    currentPriceEl.textContent = formattedCurrentPrice;
+  }
+  if (regularPriceEl) {
+    if (hasSale) {
+      regularPriceEl.textContent = `จาก ${formattedRegularPrice}`;
+      regularPriceEl.classList.remove('hidden');
+    } else {
+      regularPriceEl.classList.add('hidden');
+    }
+  }
+
   // Demo Button
   const demoBtn = document.getElementById('detail-demo-btn');
   if (p.demo_url && !isComingSoon) {

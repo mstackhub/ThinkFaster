@@ -168,11 +168,18 @@ function renderProjectDetail(p) {
   // 5. Overview & Descriptions
   const overviewEl = document.getElementById('detail-overview');
   if (overviewEl) {
-    // Sanitized multi-line paragraph rendering
-    overviewEl.innerHTML = (p.full_description || p.short_description || '')
-      .split('\n\n')
-      .map(para => `<p class="mb-4 leading-relaxed text-slate-700">${escapeHTML(para)}</p>`)
-      .join('');
+    const rawText = (p.full_description || p.short_description || '').trim();
+    if (!rawText) {
+      overviewEl.innerHTML = '<p class="text-slate-400 text-sm">ไม่มีรายละเอียดเพิ่มเติม</p>';
+    } else {
+      const paragraphs = rawText.split(/\r?\n\r?\n/);
+      overviewEl.innerHTML = paragraphs
+        .map(para => {
+          const lines = para.split(/\r?\n/).map(line => escapeHTML(line)).join('<br>');
+          return `<p class="mb-4 leading-relaxed text-slate-700">${lines}</p>`;
+        })
+        .join('');
+    }
   }
 
   // 6. Features List

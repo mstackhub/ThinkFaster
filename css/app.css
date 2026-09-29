@@ -32,6 +32,12 @@ body {
   overflow-x: hidden;
 }
 
+/* Thai Typography & Word Break Rules */
+h1, h2, h3, h4, h5, h6 {
+  word-break: normal;
+  overflow-wrap: break-word;
+}
+
 /* Safe area for mobile */
 .pb-safe {
   padding-bottom: calc(1rem + env(safe-area-inset-bottom, 0px));

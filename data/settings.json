@@ -67,6 +67,6 @@
   },
   "supabase": {
     "url": "https://pmmuylosdqklzsuczqrv.supabase.co",
-    "anon_key": ""
+    "anon_key": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBtbXV5bG9zZHFrbHpzdWN6cXJ2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTA2NzI5MzQsImV4cCI6MjEwNjI0ODkzNH0.rYjG_2jBn6uABFpcqglxV3Jv56WQiDUhtM-Vl1Bf6tA"
   }
 }

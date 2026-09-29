@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ตั้งค่าเว็บไซต์ (Settings) | ThinkFaster Admin</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="../css/app.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body class="bg-slate-50 text-slate-900 flex h-screen overflow-hidden">
+
+  <div id="admin-sidebar-container" class="shrink-0"></div>
+
+  <div class="flex-1 flex flex-col min-w-0 h-screen overflow-hidden">
+    <div id="admin-topbar-container" class="shrink-0"></div>
+
+    <main class="flex-1 overflow-y-auto admin-scroll p-4 sm:p-8">
+      <div class="max-w-4xl w-full mx-auto space-y-6 pb-16">
+        <div>
+          <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">ตั้งค่าเว็บไซต์ & ช่องทางติดต่อ</h1>
+          <p class="text-xs sm:text-sm text-slate-500 mt-1">กำหนดข้อมูลทั่วไป ช่องทาง LINE / Facebook, รหัส Tracking และการเชื่อมต่อ Supabase</p>
+        </div>
+
+        <form id="settings-form" class="space-y-6">
+        <!-- 1. General Settings -->
+        <div class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-xs space-y-4">
+          <h2 class="text-base font-bold text-slate-900 border-b border-slate-100 pb-3 flex items-center gap-2">
+            <span>⚙️</span> ข้อมูลทั่วไปของเว็บไซต์
+          </h2>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="set-site-name" class="block text-xs font-bold text-slate-700 mb-1">ชื่อเว็บไซต์ (Site Name)</label>
+              <input id="set-site-name" type="text" class="w-full text-xs rounded-xl border border-slate-200 px-3.5 py-2.5 focus:ring-2 focus:ring-blue-500" />
+            </div>
+
+            <div>
+              <label for="set-tagline" class="block text-xs font-bold text-slate-700 mb-1">สโลแกน (Tagline)</label>
+              <input id="set-tagline" type="text" class="w-full text-xs rounded-xl border border-slate-200 px-3.5 py-2.5 focus:ring-2 focus:ring-blue-500" />
+            </div>
+
+            <div class="sm:col-span-2">
+              <label for="set-desc" class="block text-xs font-bold text-slate-700 mb-1">คำอธิบายภาพรวม (Meta Description)</label>
+              <textarea id="set-desc" rows="2" class="w-full text-xs rounded-xl border border-slate-200 px-3.5 py-2.5 focus:ring-2 focus:ring-blue-500"></textarea>
+            </div>
+
+            <div class="sm:col-span-2">
+              <label for="set-footer-text" class="block text-xs font-bold text-slate-700 mb-1">ข้อความท้ายเว็บ (Footer Text)</label>
+              <textarea id="set-footer-text" rows="2" class="w-full text-xs rounded-xl border border-slate-200 px-3.5 py-2.5 focus:ring-2 focus:ring-blue-500"></textarea>
+            </div>
+
+            <div class="sm:col-span-2">
+              <label for="set-copyright" class="block text-xs font-bold text-slate-700 mb-1">ข้อความลิขสิทธิ์ (Copyright)</label>
+              <input id="set-copyright" type="text" class="w-full text-xs rounded-xl border border-slate-200 px-3.5 py-2.5 focus:ring-2 focus:ring-blue-500" />
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Contacts Settings -->
+        <div class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-xs space-y-4">
+          <h2 class="text-base font-bold text-slate-900 border-b border-slate-100 pb-3 flex items-center gap-2">
+            <span>💬</span> ช่องทางการติดต่อ (LINE, Messenger, โทรศัพท์)
+          </h2>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="set-line-id" class="block text-xs font-bold text-slate-700 mb-1">LINE Official Account ID</label>
+              <input id="set-line-id" type="text" placeholder="@thinkfaster" class="w-full text-xs rounded-xl border border-slate-200 px-3.5 py-2.5 focus:ring-2 focus:ring-blue-500" />
+            </div>
+
+            <div>
+              <label for="set-line-url" class="block text-xs font-bold text-slate-700 mb-1">LINE Add Friend URL</label>
+              <input id="set-line-url" type="url" placeholder="https://line.me/ti/p/@thinkfaster" class="w-full text-xs rounded-xl border border-slate-200 px-3.5 py-2.5 focus:ring-2 focus:ring-blue-500" />
+            </div>
+
+            <div class="sm:col-span-2">
+              <label for="set-messenger-url" class="block text-xs font-bold text-slate-700 mb-1">Facebook Messenger URL</label>
+              <input id="set-messenger-url" type="url" placeholder="https://m.me/thinkfasterapp" class="w-full text-xs rounded-xl border border-slate-200 px-3.5 py-2.5 focus:ring-2 focus:ring-blue-500" />
+            </div>
+
+            <div>
+              <label for="set-phone-number" class="block text-xs font-bold text-slate-700 mb-1">เบอร์โทรศัพท์ (สำหรับคลิกโทร tel:)</label>
+              <input id="set-phone-number" type="text" placeholder="0812345678" class="w-full text-xs rounded-xl border border-slate-200 px-3.5 py-2.5 focus:ring-2 focus:ring-blue-500" />
+            </div>
+
+            <div>
+              <label for="set-phone-display" class="block text-xs font-bold text-slate-700 mb-1">เบอร์โทรศัพท์สำหรับแสดงผล</label>
+              <input id="set-phone-display" type="text" placeholder="081-234-5678" class="w-full text-xs rounded-xl border border-slate-200 px-3.5 py-2.5 focus:ring-2 focus:ring-blue-500" />
+            </div>
+
+            <div>
+              <label for="set-email" class="block text-xs font-bold text-slate-700 mb-1">Email ติดต่อ</label>
+              <input id="set-email" type="email" placeholder="contact@thinkfaster.dev" class="w-full text-xs rounded-xl border border-slate-200 px-3.5 py-2.5 focus:ring-2 focus:ring-blue-500" />
+            </div>
+
+            <div>
+              <label for="set-business-hours" class="block text-xs font-bold text-slate-700 mb-1">เวลาทำการ</label>
+              <input id="set-business-hours" type="text" placeholder="09:00 - 21:00 น." class="w-full text-xs rounded-xl border border-slate-200 px-3.5 py-2.5 focus:ring-2 focus:ring-blue-500" />
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Copy Order Template Setting (Requirement #24) -->
+        <div class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-xs space-y-4">
+          <h2 class="text-base font-bold text-slate-900 border-b border-slate-100 pb-3 flex items-center gap-2">
+            <span>📋</span> แม่แบบข้อความสำหรับกด Copy สั่งซื้อ (Order Template)
+          </h2>
+          <div>
+            <label for="set-order-template" class="block text-xs font-bold text-slate-700 mb-1">
+              Template ข้อความ (รองรับตัวแปร {{project_code}}, {{project_name}}, {{price}}, {{demo_url}})
+            </label>
+            <textarea id="set-order-template" rows="5" class="w-full text-xs font-mono rounded-xl border border-slate-200 px-3.5 py-2.5 focus:ring-2 focus:ring-blue-500 leading-relaxed"></textarea>
+          </div>
+        </div>
+
+        <!-- 4. Tracking & Analytics Settings (Requirement #53) -->
+        <div class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-xs space-y-4">
+          <h2 class="text-base font-bold text-slate-900 border-b border-slate-100 pb-3 flex items-center gap-2">
+            <span>📈</span> เครื่องมือวัดผลและการตลาด (Analytics & Pixel)
+          </h2>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="set-gtm-id" class="block text-xs font-bold text-slate-700 mb-1">Google Tag Manager ID</label>
+              <input id="set-gtm-id" type="text" placeholder="GTM-XXXXXXX" class="w-full text-xs font-mono rounded-xl border border-slate-200 px-3.5 py-2.5 focus:ring-2 focus:ring-blue-500" />
+            </div>
+
+            <div>
+              <label for="set-ga4-id" class="block text-xs font-bold text-slate-700 mb-1">GA4 Measurement ID</label>
+              <input id="set-ga4-id" type="text" placeholder="G-XXXXXXXXXX" class="w-full text-xs font-mono rounded-xl border border-slate-200 px-3.5 py-2.5 focus:ring-2 focus:ring-blue-500" />
+            </div>
+
+            <div>
+              <label for="set-meta-id" class="block text-xs font-bold text-slate-700 mb-1">Meta Pixel ID (Facebook)</label>
+              <input id="set-meta-id" type="text" placeholder="123456789012345" class="w-full text-xs font-mono rounded-xl border border-slate-200 px-3.5 py-2.5 focus:ring-2 focus:ring-blue-500" />
+            </div>
+
+            <div>
+              <label for="set-tiktok-id" class="block text-xs font-bold text-slate-700 mb-1">TikTok Pixel ID</label>
+              <input id="set-tiktok-id" type="text" placeholder="CXXXXXXXXXXX" class="w-full text-xs font-mono rounded-xl border border-slate-200 px-3.5 py-2.5 focus:ring-2 focus:ring-blue-500" />
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Supabase Database Configuration -->
+        <div class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-xs space-y-4">
+          <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+            <h2 class="text-base font-bold text-slate-900 flex items-center gap-2">
+              <span>⚡</span> การเชื่อมต่อ Supabase Database & Storage
+            </h2>
+            <button
+              id="btn-test-supabase"
+              type="button"
+              class="px-3 py-1.5 rounded-xl border border-blue-200 bg-blue-50 hover:bg-blue-100 text-blue-700 text-xs font-bold transition-colors"
+            >
+              ทดสอบการเชื่อมต่อ
+            </button>
+          </div>
+
+          <p class="text-xs text-slate-500">
+            ระบบรองรับการทำงานทั้งแบบ Mock / LocalStorage และเมื่อคุณนำ URL และ Anon Key ของ Supabase มาใส่ ระบบจะซิงก์ข้อมูลไปยัง PostgreSQL และ Storage Bucket <code class="bg-slate-100 px-1 py-0.5 rounded text-blue-600">project-images</code> ทันที
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="set-sb-url" class="block text-xs font-bold text-slate-700 mb-1">Supabase Project URL</label>
+              <input id="set-sb-url" type="url" placeholder="https://xyzcompany.supabase.co" class="w-full text-xs font-mono rounded-xl border border-slate-200 px-3.5 py-2.5 focus:ring-2 focus:ring-blue-500" />
+            </div>
+
+            <div>
+              <label for="set-sb-key" class="block text-xs font-bold text-slate-700 mb-1">Supabase Anon Key (Public)</label>
+              <input id="set-sb-key" type="password" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..." class="w-full text-xs font-mono rounded-xl border border-slate-200 px-3.5 py-2.5 focus:ring-2 focus:ring-blue-500" />
+            </div>
+          </div>
+        </div>
+
+        <div class="flex justify-end pt-2">
+          <button
+            type="submit"
+            class="px-8 py-3.5 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm shadow-md shadow-blue-500/25 transition-all"
+          >
+            บันทึกการตั้งค่าทั้งหมด
+          </button>
+        </div>
+      </form>
+      </div>
+    </main>
+  </div>
+
+  <script type="module">
+    import { initAdminLayout } from './js/admin-layout.js';
+    import { initAdminSettings } from './js/admin-settings.js';
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      await initAdminLayout('settings');
+      document.getElementById('admin-page-title').textContent = 'ตั้งค่าเว็บไซต์ (Settings)';
+      await initAdminSettings();
+    });
+  </script>
+</body>
+</html>

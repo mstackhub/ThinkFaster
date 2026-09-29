@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>เว็บไซต์ Portfolio & Case Study สำหรับ Creative Agency (฿2,790) | ThinkFaster</title>
+  <meta name="description" content="เว็บไซต์ Portfolio และสตูดิโอผลงานระดับสากล ดีไซน์สะอาดทันสมัย ดึงดูดลูกค้าระดับองค์กร ราคา ฿2,790">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="เว็บไซต์ Portfolio & Case Study สำหรับ Creative Agency (฿2,790) | ThinkFaster">
+  <meta property="og:description" content="เว็บไซต์ Portfolio และสตูดิโอผลงานระดับสากล ดีไซน์สะอาดทันสมัย ดึงดูดลูกค้าระดับองค์กร ราคา ฿2,790">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="เว็บไซต์ Portfolio & Case Study สำหรับ Creative Agency (฿2,790) | ThinkFaster">
+  <meta name="twitter:description" content="เว็บไซต์ Portfolio และสตูดิโอผลงานระดับสากล ดีไซน์สะอาดทันสมัย ดึงดูดลูกค้าระดับองค์กร ราคา ฿2,790">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="../../css/app.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script>
+      window.__PRELOADED_SLUG__ = "creative-agency-portfolio";
+      const origGet = URLSearchParams.prototype.get;
+      URLSearchParams.prototype.get = function(key) {
+        if (key === 'slug') return "creative-agency-portfolio";
+        return origGet.apply(this, arguments);
+      };
+    </script>
+  
+</head>
+<body class="bg-slate-50 text-slate-900 flex flex-col min-h-screen">
+
+  <div id="site-header"></div>
+
+  <!-- Loading State Indicator -->
+  <div id="project-detail-loading" class="max-w-7xl mx-auto px-4 py-16 text-center">
+    <div class="inline-block animate-spin w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full mb-3"></div>
+    <p class="text-sm font-medium text-slate-500">กำลังโหลดข้อมูลระบบ...</p>
+  </div>
+
+  <!-- 404 Project Not Found State -->
+  <div id="project-not-found" class="hidden max-w-xl mx-auto my-20 p-8 text-center bg-white rounded-3xl border border-slate-200 shadow-sm">
+    <div class="w-16 h-16 rounded-2xl bg-rose-50 text-rose-500 flex items-center justify-center mx-auto mb-4 text-3xl">
+      ⚠️
+    </div>
+    <h2 class="text-xl font-bold text-slate-900 mb-2">ไม่พบข้อมูลระบบที่คุณต้องการ</h2>
+    <p class="text-sm text-slate-600 mb-6">
+      ระบบนี้อาจถูกยกเลิก ซ่อน หรือ URL ไม่ถูกต้อง กรุณาเลือกดูระบบอื่นในแคตตาล็อกของเรา
+    </p>
+    <div class="flex items-center justify-center gap-3">
+      <a href="../../projects.html" class="px-5 py-2.5 rounded-xl bg-blue-600 text-white font-semibold text-sm hover:bg-blue-700 transition-colors">
+        ดูระบบทั้งหมด
+      </a>
+      <a href="../../index.html" class="px-5 py-2.5 rounded-xl bg-slate-100 text-slate-700 font-medium text-sm hover:bg-slate-200 transition-colors">
+        กลับหน้าหลัก
+      </a>
+    </div>
+  </div>
+
+  <!-- Main Detail Content (Hidden initially until loaded) -->
+  <main id="project-detail-content" class="hidden flex-1 pb-24 lg:pb-16">
+    <!-- Breadcrumb Section -->
+    <div class="bg-white border-b border-slate-200/80 py-3.5">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <nav class="flex items-center gap-2 text-xs text-slate-500 flex-wrap" aria-label="Breadcrumb">
+          <a href="../../index.html" class="hover:text-blue-600 transition-colors">หน้าแรก</a>
+          <span>/</span>
+          <a href="../../projects.html" class="hover:text-blue-600 transition-colors">ระบบทั้งหมด</a>
+          <span>/</span>
+          <a id="breadcrumb-category" href="#" class="hover:text-blue-600 transition-colors">Category</a>
+          <span>/</span>
+          <span id="breadcrumb-title" class="text-slate-900 font-semibold truncate max-w-xs">Loading...</span>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Hero / Top Info (2 Columns on Desktop) -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:pt-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+        <!-- Left: Image Gallery -->
+        <div class="lg:col-span-7 space-y-4">
+          <!-- Main Cover Image -->
+          <div class="relative aspect-video-box rounded-2xl overflow-hidden bg-slate-100 border border-slate-200 shadow-sm cursor-pointer group">
+            <img
+              id="detail-cover-image"
+              src=""
+              alt="Project Cover"
+              class="w-full h-full object-cover object-center group-hover:scale-102 transition-transform duration-300"
+            />
+            <div class="absolute inset-0 bg-slate-900/10 group-hover:bg-transparent transition-colors"></div>
+            <div class="absolute bottom-3 right-3 bg-black/70 backdrop-blur-sm text-white text-xs px-3 py-1.5 rounded-lg flex items-center gap-1.5 pointer-events-none">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/></svg>
+              <span>กดเพื่อดูภาพขยาย</span>
+            </div>
+          </div>
+
+          <!-- Thumbnails Row -->
+          <div id="detail-gallery-thumbs" class="flex items-center gap-3 overflow-x-auto pb-2 hide-scrollbar">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+
+        <!-- Right: Project Specs & Purchase Card -->
+        <div class="lg:col-span-5 flex flex-col justify-between space-y-6">
+          <div class="space-y-4">
+            <!-- Code & Category Badges -->
+            <div class="flex items-center gap-2 flex-wrap justify-between">
+              <div class="flex items-center gap-2 flex-wrap">
+                <span id="detail-code" class="px-2.5 py-1 rounded-md text-xs font-bold bg-slate-900 text-white">
+                  #000
+                </span>
+                <span id="detail-category" class="px-2.5 py-1 rounded-md text-xs font-semibold bg-blue-50 text-blue-600 border border-blue-200/80">
+                  Category
+                </span>
+                <span id="detail-type" class="text-xs text-slate-500 font-medium">
+                  Web Application
+                </span>
+                <span id="detail-badge" class="px-2.5 py-1 rounded-md text-xs font-bold bg-amber-100 text-amber-800 border border-amber-200">
+                  Recommended
+                </span>
+              </div>
+
+              <!-- Views Badge -->
+              <div class="flex items-center gap-1.5 text-xs text-slate-500 bg-slate-50 border border-slate-200/80 px-2.5 py-1 rounded-lg shrink-0" title="ยอดผู้เข้าชมระบบนี้">
+                <svg class="w-3.5 h-3.5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                </svg>
+                <span id="detail-views-count" class="font-bold text-slate-700">0</span>
+                <span class="text-[11px] text-slate-400">เข้าชม</span>
+              </div>
+            </div>
+
+            <!-- Title -->
+            <h1 id="detail-name" class="text-2xl sm:text-3xl font-extrabold text-slate-900 leading-tight">
+              Loading Project...
+            </h1>
+
+            <!-- Short Desc -->
+            <p id="detail-short-desc" class="text-sm sm:text-base text-slate-600 leading-relaxed">
+              Loading description...
+            </p>
+
+            <!-- Price Box -->
+            <div class="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-2">
+              <div class="text-xs font-medium text-slate-400">ราคาพร้อมใช้งาน (ไม่มีค่าบริการแอบแฝง)</div>
+              <div class="flex items-baseline gap-3">
+                <span id="detail-current-price" class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+                  ฿0
+                </span>
+                <span id="detail-regular-price" class="text-base text-slate-400 line-through">
+                  จาก ฿0
+                </span>
+              </div>
+              <div class="pt-1 flex items-center gap-2 text-xs text-emerald-600 font-medium">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                รับฟรี! บริการช่วยตั้งค่าและติดตั้งขึ้น Vercel / โฮสติ้ง
+              </div>
+            </div>
+
+            <!-- Primary CTAs -->
+            <div class="flex flex-col sm:flex-row gap-2.5 pt-2">
+              <a
+                id="detail-demo-btn"
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex-1 inline-flex items-center justify-center px-4 py-2.5 rounded-xl font-semibold text-xs sm:text-sm bg-slate-900 hover:bg-slate-800 text-white shadow-xs transition-all hover:-translate-y-0.5 whitespace-nowrap"
+              >
+                <svg class="w-4 h-4 mr-1.5 text-blue-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+                <span>เปิดดู Demo จริง (New Tab)</span>
+              </a>
+
+              <a
+                href="#order-box-section"
+                class="flex-1 inline-flex items-center justify-center px-4 py-2.5 rounded-xl font-semibold text-xs sm:text-sm bg-blue-600 hover:bg-blue-700 text-white shadow-xs shadow-blue-500/20 transition-all hover:-translate-y-0.5 whitespace-nowrap"
+              >
+                <svg class="w-4 h-4 mr-1.5 text-white/90 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                </svg>
+                <span>สอบถาม / สั่งซื้อ</span>
+              </a>
+            </div>
+
+            <!-- Share Buttons (Requirement #122, #123) -->
+            <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+              <span>แชร์โปรเจกต์นี้:</span>
+              <div class="flex items-center gap-2">
+                <button id="btn-share-copy-link" type="button" class="p-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors" title="คัดลอกลิงก์">
+                  🔗 คัดลอกลิงก์
+                </button>
+                <a id="btn-share-line" href="#" target="_blank" rel="noopener noreferrer" class="p-2 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-700 font-bold transition-colors">
+                  LINE
+                </a>
+                <a id="btn-share-fb" href="#" target="_blank" rel="noopener noreferrer" class="p-2 rounded-lg bg-blue-50 hover:bg-blue-100 text-blue-700 font-bold transition-colors">
+                  Facebook
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Project Specifications & Content Details -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 sm:mt-16">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+        <!-- Left Main: Video Demo + Overview + Features -->
+        <div class="lg:col-span-8 space-y-12">
+          <!-- Video Demo Embed (Requirement #19) -->
+          <div id="detail-video-section" class="hidden bg-white p-6 rounded-3xl border border-slate-200 shadow-sm">
+            <h2 class="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">
+              <span class="w-7 h-7 rounded-lg bg-rose-50 text-rose-600 flex items-center justify-center text-sm">▶</span>
+              วิดีโอสาธิตการทำงาน (Video Demo)
+            </h2>
+            <div class="aspect-video-box rounded-2xl overflow-hidden bg-slate-900 shadow-inner">
+              <iframe
+                id="detail-video-iframe"
+                src=""
+                title="System Demo Video"
+                class="w-full h-full border-0"
+                allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+              ></iframe>
+            </div>
+          </div>
+
+          <!-- Project Overview (Requirement #20) -->
+          <div class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm">
+            <h2 class="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">
+              <span class="w-7 h-7 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center text-sm">📄</span>
+              รายละเอียดและจุดเด่นของระบบ
+            </h2>
+            <div id="detail-overview" class="prose max-w-none text-slate-700 text-sm sm:text-base leading-relaxed">
+              <!-- Rendered as sanitized paragraphs -->
+            </div>
+          </div>
+
+          <!-- Features (Requirement #21) -->
+          <div class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm">
+            <h2 class="text-xl font-bold text-slate-900 mb-6 flex items-center gap-2">
+              <span class="w-7 h-7 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center text-sm">⚡</span>
+              ฟีเจอร์การทำงานหลักที่มีในระบบ
+            </h2>
+            <div id="detail-features-list" class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+              <!-- Rendered by JS -->
+            </div>
+          </div>
+
+          <!-- Suitable For (Requirement #22) -->
+          <div class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm">
+            <h2 class="text-lg font-bold text-slate-900 mb-4">
+              ระบบนี้เหมาะสำหรับใคร / ธุรกิจอะไร?
+            </h2>
+            <div id="detail-suitable-tags" class="flex flex-wrap gap-2">
+              <!-- Rendered by JS -->
+            </div>
+          </div>
+
+          <!-- Tech Stack (Requirement #23) -->
+          <div class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm">
+            <h2 class="text-lg font-bold text-slate-900 mb-4">
+              Technology Stack ที่ใช้พัฒนา
+            </h2>
+            <div id="detail-tech-tags" class="flex flex-wrap gap-2">
+              <!-- Rendered by JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Sidebar: Order Copy Box & Direct Contacts -->
+        <div class="lg:col-span-4 space-y-6">
+          <!-- Copy Order Message Box (Requirement #24) -->
+          <div id="order-box-section" class="bg-white p-6 rounded-3xl border-2 border-blue-500/30 shadow-lg shadow-blue-500/5 space-y-4">
+            <div class="flex items-center justify-between">
+              <h3 class="font-extrabold text-slate-900 text-base flex items-center gap-2">
+                <span>📋</span>
+                คัดลอกข้อความสั่งซื้อ
+              </h3>
+              <span class="text-[10px] font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full">
+                สั่งซื้อง่ายใน 1 คลิก
+              </span>
+            </div>
+
+            <p class="text-xs text-slate-500 leading-relaxed">
+              กดปุ่มด้านล่างเพื่อคัดลอกข้อความสรุปรายละเอียดระบบนี้ แล้วส่งข้อความเข้า LINE หรือ Messenger ของเราเพื่อสั่งซื้อได้ทันที
+            </p>
+
+            <div class="p-3.5 rounded-xl bg-slate-900 text-slate-200 font-mono text-xs whitespace-pre-wrap leading-relaxed select-all" id="copy-message-preview">
+              <!-- Rendered template -->
+            </div>
+
+            <button
+              id="btn-copy-order-message"
+              type="button"
+              class="w-full flex items-center justify-center py-3 px-4 rounded-xl bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-bold text-sm shadow-md shadow-blue-600/25 transition-all"
+            >
+              <svg class="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
+              </svg>
+              คัดลอกข้อความสั่งซื้อ
+            </button>
+          </div>
+
+          <!-- Direct Contact Channels (Requirement #25) -->
+          <div id="contact-section" class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm space-y-3">
+            <h3 class="font-bold text-slate-900 text-base mb-1">ช่องทางสั่งซื้อและติดต่อทีมงาน</h3>
+            <p class="text-xs text-slate-500 mb-3">พูดคุยสอบถามและแจ้งความต้องการได้ตลอดเวลา</p>
+
+            <!-- LINE OA -->
+            <a
+              id="btn-contact-line"
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-full flex items-center justify-between p-3.5 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-800 font-semibold text-sm transition-colors border border-emerald-200/80"
+            >
+              <div class="flex items-center gap-3">
+                <span class="w-8 h-8 rounded-lg bg-emerald-500 text-white flex items-center justify-center font-bold text-xs">LINE</span>
+                <span>สั่งซื้อผ่าน LINE OA</span>
+              </div>
+              <span class="text-xs text-emerald-600">ทักแชท ➔</span>
+            </a>
+
+            <!-- Facebook Messenger -->
+            <a
+              id="btn-contact-messenger"
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-full flex items-center justify-between p-3.5 rounded-xl bg-blue-50 hover:bg-blue-100 text-blue-800 font-semibold text-sm transition-colors border border-blue-200/80"
+            >
+              <div class="flex items-center gap-3">
+                <span class="w-8 h-8 rounded-lg bg-blue-600 text-white flex items-center justify-center font-bold text-xs">FB</span>
+                <span>แชทผ่าน Messenger</span>
+              </div>
+              <span class="text-xs text-blue-600">เปิดแชท ➔</span>
+            </a>
+
+            <!-- Phone Call -->
+            <a
+              id="btn-contact-phone"
+              href="#"
+              class="w-full flex items-center justify-between p-3.5 rounded-xl bg-amber-50 hover:bg-amber-100 text-amber-800 font-semibold text-sm transition-colors border border-amber-200/80"
+            >
+              <div class="flex items-center gap-3">
+                <span class="w-8 h-8 rounded-lg bg-amber-500 text-white flex items-center justify-center text-sm">📞</span>
+                <span>โทรสอบถามข้อมูล</span>
+              </div>
+              <span class="text-xs text-amber-600">โทรเลย ➔</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Similar Projects Section (Requirement #28) -->
+    <section id="similar-projects-section" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 sm:mt-24 pt-12 border-t border-slate-200">
+      <div class="mb-8">
+        <span class="text-xs font-bold uppercase tracking-wider text-blue-600">ระบบที่เกี่ยวข้อง</span>
+        <h2 class="text-2xl font-extrabold text-slate-900 mt-1">ระบบอื่น ๆ ที่คุณอาจสนใจ</h2>
+      </div>
+
+      <div id="similar-projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <!-- Rendered by JS -->
+      </div>
+    </section>
+  </main>
+
+  <!-- Mobile Sticky CTA Bar (Requirement #27) -->
+  <div
+    id="mobile-sticky-cta"
+    class="hidden lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-slate-200 shadow-2xl px-4 py-3 pb-safe"
+  >
+    <div class="flex items-center justify-between gap-3">
+      <div>
+        <div class="text-[10px] text-slate-400 font-medium">ราคาเริ่มต้น</div>
+        <div id="sticky-price" class="text-lg font-black text-slate-900 leading-none">
+          ฿0
+        </div>
+      </div>
+      <div class="flex items-center gap-2">
+        <a
+          id="sticky-demo-btn"
+          href="#"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="px-3.5 py-2.5 rounded-xl text-xs font-bold bg-slate-900 text-white"
+        >
+          ดู Demo
+        </a>
+        <button
+          id="sticky-contact-btn"
+          type="button"
+          class="px-4 py-2.5 rounded-xl text-xs font-bold bg-blue-600 text-white shadow-md shadow-blue-500/25"
+        >
+          สอบถาม / สั่งซื้อ
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="site-footer"></div>
+  <div id="floating-contact-container"></div>
+
+  <script type="module" src="../../js/project-detail.js"></script>
+</body>
+</html>

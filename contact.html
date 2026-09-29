@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ติดต่อเรา | ThinkFaster</title>
+  <meta name="description" content="ติดต่อสั่งซื้อระบบเว็บไซต์ สอบถามข้อมูลเพิ่มเติมผ่าน LINE OA, Facebook Messenger หรือโทรศัพท์">
+  <link rel="canonical" href="https://thinkfaster.dev/contact.html">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/app.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body class="bg-slate-50 text-slate-900 flex flex-col min-h-screen">
+
+  <div id="site-header"></div>
+
+  <main class="flex-1 py-12 sm:py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Title -->
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span class="text-xs font-bold uppercase tracking-wider text-blue-600">Contact Us</span>
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-1">
+          ติดต่อเราเพื่อสั่งซื้อหรือสอบถาม
+        </h1>
+        <p class="text-sm sm:text-base text-slate-600 mt-2">
+          เลือกช่องทางที่คุณสะดวกที่สุด ทีมงานพร้อมให้บริการและตอบคำถามทุกวัน
+        </p>
+      </div>
+
+      <!-- Contact Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+        <!-- LINE OA -->
+        <a
+          href="https://line.me/ti/p/@thinkfaster"
+          target="_blank"
+          rel="noopener noreferrer"
+          id="contact-line-card"
+          class="p-6 rounded-3xl bg-white border border-slate-200/90 shadow-sm hover:border-emerald-300 hover:shadow-md transition-all group flex flex-col items-center text-center"
+        >
+          <div class="w-14 h-14 rounded-2xl bg-emerald-50 text-emerald-600 font-bold flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
+            LINE
+          </div>
+          <h3 class="font-bold text-slate-900 text-base mb-1">LINE Official Account</h3>
+          <p class="text-xs text-slate-500 mb-3">ตอบกลับไวที่สุดในเวลาทำการ</p>
+          <span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full">
+            @thinkfaster
+          </span>
+        </a>
+
+        <!-- Facebook Messenger -->
+        <a
+          href="https://m.me/thinkfasterapp"
+          target="_blank"
+          rel="noopener noreferrer"
+          id="contact-messenger-card"
+          class="p-6 rounded-3xl bg-white border border-slate-200/90 shadow-sm hover:border-blue-300 hover:shadow-md transition-all group flex flex-col items-center text-center"
+        >
+          <div class="w-14 h-14 rounded-2xl bg-blue-50 text-blue-600 font-bold flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
+            FB
+          </div>
+          <h3 class="font-bold text-slate-900 text-base mb-1">Facebook Messenger</h3>
+          <p class="text-xs text-slate-500 mb-3">คุยผ่านเพจ ThinkFaster</p>
+          <span class="text-xs font-bold text-blue-600 bg-blue-50 px-3 py-1 rounded-full">
+            m.me/thinkfasterapp
+          </span>
+        </a>
+
+        <!-- Phone Call -->
+        <a
+          href="tel:0812345678"
+          id="contact-phone-card"
+          class="p-6 rounded-3xl bg-white border border-slate-200/90 shadow-sm hover:border-amber-300 hover:shadow-md transition-all group flex flex-col items-center text-center"
+        >
+          <div class="w-14 h-14 rounded-2xl bg-amber-50 text-amber-600 font-bold flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
+            📞
+          </div>
+          <h3 class="font-bold text-slate-900 text-base mb-1">โทรศัพท์สายด่วน</h3>
+          <p class="text-xs text-slate-500 mb-3">ปรึกษาโครงการเร่งด่วน</p>
+          <span class="text-xs font-bold text-amber-600 bg-amber-50 px-3 py-1 rounded-full">
+            081-234-5678
+          </span>
+        </a>
+      </div>
+
+      <!-- Business Hours & FAQ Note -->
+      <div class="p-8 rounded-3xl bg-white border border-slate-200 shadow-sm space-y-4">
+        <h3 class="text-lg font-bold text-slate-900">ข้อมูลการติดต่อและเวลาทำการ</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-slate-600">
+          <div>
+            <span class="font-semibold text-slate-800 block mb-1">⏰ เวลาทำการฝ่ายบริการลูกค้า</span>
+            <p>วันจันทร์ - วันอาทิตย์: 09:00 - 21:00 น. (ไม่มีวันหยุด)</p>
+          </div>
+          <div>
+            <span class="font-semibold text-slate-800 block mb-1">📍 ที่ตั้งและช่องทางออนไลน์</span>
+            <p>ให้บริการแบบ 100% Remote ติดตั้งผ่านระบบ Cloud (Vercel & Supabase)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+  <div id="floating-contact-container"></div>
+
+  <script type="module">
+    import { renderHeader } from './js/components/header.js';
+    import { renderFooter } from './js/components/footer.js';
+    import { renderFloatingContact } from './js/components/floating-contact.js';
+    import { renderCookieBanner } from './js/components/cookie-banner.js';
+    import { getSettings } from './js/api.js';
+    import { trackEvent } from './js/tracking.js';
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      renderHeader('contact');
+      renderCookieBanner();
+      const settings = await getSettings();
+      renderFooter(settings);
+      renderFloatingContact(settings);
+
+      document.getElementById('contact-line-card')?.addEventListener('click', () => {
+        trackEvent('click_line', { location: 'contact_page' });
+      });
+      document.getElementById('contact-messenger-card')?.addEventListener('click', () => {
+        trackEvent('click_messenger', { location: 'contact_page' });
+      });
+      document.getElementById('contact-phone-card')?.addEventListener('click', () => {
+        trackEvent('click_phone', { location: 'contact_page' });
+      });
+    });
+  </script>
+</body>
+</html>

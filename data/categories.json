@@ -1,0 +1,106 @@
+[
+  {
+    "id": "cat-001",
+    "name": "Booking System",
+    "slug": "booking-system",
+    "description": "ระบบจองคิว จองห้องพัก และนัดหมายบริการออนไลน์",
+    "sort_order": 1,
+    "is_active": true
+  },
+  {
+    "id": "cat-002",
+    "name": "E-Commerce",
+    "slug": "e-commerce",
+    "description": "ระบบร้านค้าออนไลน์ สั่งซื้อสินค้า ตะกร้าสินค้า และแคตตาล็อก",
+    "sort_order": 2,
+    "is_active": true
+  },
+  {
+    "id": "cat-003",
+    "name": "Restaurant",
+    "slug": "restaurant",
+    "description": "ระบบร้านอาหาร สั่งอาหารผ่าน QR Code และเมนูดิจิทัล",
+    "sort_order": 3,
+    "is_active": true
+  },
+  {
+    "id": "cat-004",
+    "name": "Service Business",
+    "slug": "service-business",
+    "description": "เว็บไซต์และระบบสำหรับธุรกิจบริการ ทำความสะอาด ซ่อมบำรุง",
+    "sort_order": 4,
+    "is_active": true
+  },
+  {
+    "id": "cat-005",
+    "name": "Landing Page",
+    "slug": "landing-page",
+    "description": "หน้าขายสินค้าและบริการหน้าเดียว Conversion สูง โหลดไว",
+    "sort_order": 5,
+    "is_active": true
+  },
+  {
+    "id": "cat-006",
+    "name": "Corporate Website",
+    "slug": "corporate-website",
+    "description": "เว็บไซต์องค์กร บริษัท ห้างหุ้นส่วน เพิ่มความน่าเชื่อถือ",
+    "sort_order": 6,
+    "is_active": true
+  },
+  {
+    "id": "cat-007",
+    "name": "Portfolio",
+    "slug": "portfolio",
+    "description": "เว็บไซต์โชว์ผลงาน ดีไซเนอร์ เอเจนซี ช่างภาพ ฟรีแลนซ์",
+    "sort_order": 7,
+    "is_active": true
+  },
+  {
+    "id": "cat-008",
+    "name": "Internal System",
+    "slug": "internal-system",
+    "description": "ระบบจัดการภายในองค์กร ระบบพนักงาน และแดชบอร์ดข้อมูล",
+    "sort_order": 8,
+    "is_active": true
+  },
+  {
+    "id": "cat-009",
+    "name": "Business Tool",
+    "slug": "business-tool",
+    "description": "เครื่องมือคำนวณราคา ใบเสนอราคา และแบบฟอร์มธุรกิจ",
+    "sort_order": 9,
+    "is_active": true
+  },
+  {
+    "id": "cat-010",
+    "name": "Property",
+    "slug": "property",
+    "description": "ระบบอสังหาริมทรัพย์ ฝากขาย-เช่า คอนโด บ้าน ที่ดิน",
+    "sort_order": 10,
+    "is_active": true
+  },
+  {
+    "id": "cat-011",
+    "name": "Automotive",
+    "slug": "automotive",
+    "description": "เว็บไซต์เต็นท์รถ ซื้อขายรถมือสอง ศูนย์บริการยานยนต์",
+    "sort_order": 11,
+    "is_active": true
+  },
+  {
+    "id": "cat-012",
+    "name": "Healthcare & Beauty",
+    "slug": "healthcare-beauty",
+    "description": "คลินิกความงาม ทันตกรรม แพทย์แผนไทย และศูนย์สุขภาพ",
+    "sort_order": 12,
+    "is_active": true
+  },
+  {
+    "id": "cat-013",
+    "name": "Education",
+    "slug": "education",
+    "description": "สถาบันกวดวิชา คอร์สเรียนออนไลน์ และการอบรมสัมมนา",
+    "sort_order": 13,
+    "is_active": true
+  }
+]

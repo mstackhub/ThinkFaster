@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>นโยบายความเป็นส่วนตัว (Privacy Policy) | ThinkFaster</title>
+  <meta name="description" content="นโยบายความเป็นส่วนตัวและการคุ้มครองข้อมูลส่วนบุคคลของ ThinkFaster">
+  <link rel="canonical" href="https://thinkfaster.dev/privacy.html">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/app.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body class="bg-slate-50 text-slate-900 flex flex-col min-h-screen">
+
+  <div id="site-header"></div>
+
+  <main class="flex-1 py-12 sm:py-16">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-white p-8 sm:p-10 rounded-3xl border border-slate-200 shadow-sm space-y-6">
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+          นโยบายความเป็นส่วนตัว (Privacy Policy)
+        </h1>
+        <p class="text-xs text-slate-500">ปรับปรุงล่าสุดเมื่อ: 20 มีนาคม 2026</p>
+
+        <section class="space-y-3 text-sm text-slate-700 leading-relaxed">
+          <h2 class="text-base font-bold text-slate-900">1. บทนำและความมุ่งมั่นของเรา</h2>
+          <p>
+            ThinkFaster ("เรา") ให้ความสำคัญอย่างยิ่งต่อการคุ้มครองข้อมูลส่วนบุคคลและความเป็นส่วนตัวของผู้เข้าชมเว็บไซต์ทุกท่าน เว็บไซต์ของเราถูกออกแบบมาเพื่อเป็น Marketplace นำเสนอตัวอย่างเว็บไซต์และระบบสำเร็จรูป โดยไม่มีการบังคับให้ผู้ใช้งานทั่วไปต้องสมัครสมาชิกเพื่อเข้าดูข้อมูล
+          </p>
+        </section>
+
+        <section class="space-y-3 text-sm text-slate-700 leading-relaxed">
+          <h2 class="text-base font-bold text-slate-900">2. ข้อมูลที่เรารวบรวม</h2>
+          <p>
+            ในระยะปัจจุบัน (Phase 1) เราไม่มีระบบเปิดรับข้อมูลบัตรเครดิต บัญชีธนาคาร หรือรหัสผ่านของลูกค้าบนเว็บไซต์ ข้อมูลที่อาจมีการจัดเก็บได้แก่:
+          </p>
+          <ul class="list-disc pl-5 space-y-1 text-slate-600">
+            <li>ข้อมูลการติดต่อ เช่น บัญชี LINE, บัญชี Facebook หรือเบอร์โทรศัพท์ เมื่อท่านติดต่อทีมงานเข้ามาโดยตรง</li>
+            <li>ข้อมูลทางเทคนิคและสถิติการเข้าชม เช่น สถิติการเปิดดูระบบ (Pageview), การคลิกปุ่มดู Demo, และการกดคัดลอกข้อความสั่งซื้อ</li>
+          </ul>
+        </section>
+
+        <section class="space-y-3 text-sm text-slate-700 leading-relaxed">
+          <h2 class="text-base font-bold text-slate-900">3. เครื่องมือวิเคราะห์และการใช้งานคุกกี้ (Cookies)</h2>
+          <p>
+            เราอาจมีการใช้ Google Tag Manager (GTM), Google Analytics 4 (GA4) หรือ Meta Pixel เพื่อทำความเข้าใจพฤติกรรมการใช้งานและปรับปรุงประสิทธิภาพของเว็บไซต์ ท่านสามารถเลือกปฏิเสธคุกกี้ที่ไม่จำเป็นได้ผ่านแบนเนอร์แจ้งเตือนคุกกี้ที่แสดงอยู่ด้านล่างของหน้าเว็บ
+          </p>
+        </section>
+
+        <section class="space-y-3 text-sm text-slate-700 leading-relaxed">
+          <h2 class="text-base font-bold text-slate-900">4. การติดต่อสอบถาม</h2>
+          <p>
+            หากท่านมีคำถามเกี่ยวกับนโยบายความเป็นส่วนตัว สามารถติดต่อเราได้ผ่านช่องทาง LINE OA: @thinkfaster หรือส่งอีเมลมาที่ contact@thinkfaster.dev
+          </p>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+  <div id="floating-contact-container"></div>
+
+  <script type="module">
+    import { renderHeader } from './js/components/header.js';
+    import { renderFooter } from './js/components/footer.js';
+    import { renderFloatingContact } from './js/components/floating-contact.js';
+    import { renderCookieBanner } from './js/components/cookie-banner.js';
+    import { getSettings } from './js/api.js';
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      renderHeader('');
+      renderCookieBanner();
+      const settings = await getSettings();
+      renderFooter(settings);
+      renderFloatingContact(settings);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>จัดการข้อมูลระบบ | ThinkFaster Admin</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="../css/app.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body class="bg-slate-50 text-slate-900 flex h-screen overflow-hidden">
+
+  <div id="admin-sidebar-container" class="shrink-0"></div>
+
+  <div class="flex-1 flex flex-col min-w-0 h-screen overflow-hidden">
+    <div id="admin-topbar-container" class="shrink-0"></div>
+
+    <main class="flex-1 overflow-y-auto admin-scroll p-4 sm:p-8">
+      <div class="max-w-5xl w-full mx-auto space-y-6 pb-16">
+      <!-- Header -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2 border-b border-slate-200">
+        <div>
+          <div class="flex items-center gap-2 text-xs text-slate-400 mb-1">
+            <a href="projects.html" class="hover:text-blue-600">จัดการระบบ</a>
+            <span>/</span>
+            <span class="text-slate-600 font-medium">ฟอร์มบันทึก</span>
+          </div>
+          <h1 id="form-page-heading" class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+            เพิ่มระบบใหม่ (Add Project)
+          </h1>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <a
+            id="btn-preview-project"
+            href="#"
+            target="_blank"
+            class="hidden px-4 py-2 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 text-xs font-semibold shadow-xs"
+          >
+            ดูหน้าจริง ↗
+          </a>
+          <a href="projects.html" class="px-4 py-2 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-600 text-xs font-medium">
+            ยกเลิก
+          </a>
+        </div>
+      </div>
+
+      <!-- Main Form -->
+      <form id="project-form" class="space-y-8">
+        <!-- 1. General Info Card -->
+        <div class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-xs space-y-6">
+          <h2 class="text-base font-bold text-slate-900 flex items-center gap-2 border-b border-slate-100 pb-3">
+            <span>📌</span> ข้อมูลทั่วไปของระบบ
+          </h2>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <!-- Code -->
+            <div>
+              <label for="field-code" class="block text-xs font-bold text-slate-700 mb-1">
+                รหัสระบบ (Code) <span class="text-rose-500">*</span>
+              </label>
+              <input
+                id="field-code"
+                type="text"
+                required
+                placeholder="001"
+                class="w-full text-xs sm:text-sm font-mono rounded-xl border border-slate-200 px-3.5 py-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+
+            <!-- Name -->
+            <div class="sm:col-span-2">
+              <label for="field-name" class="block text-xs font-bold text-slate-700 mb-1">
+                ชื่อระบบ / Project Name <span class="text-rose-500">*</span>
+              </label>
+              <input
+                id="field-name"
+                type="text"
+                required
+                placeholder="เช่น ระบบจองคิวร้านสปาและเสริมความงาม"
+                class="w-full text-xs sm:text-sm rounded-xl border border-slate-200 px-3.5 py-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+
+            <!-- Slug -->
+            <div class="sm:col-span-2">
+              <div class="flex items-center justify-between mb-1">
+                <label for="field-slug" class="block text-xs font-bold text-slate-700">
+                  Slug (URL) <span class="text-rose-500">*</span>
+                </label>
+                <button id="btn-auto-slug" type="button" class="text-[11px] font-semibold text-blue-600 hover:underline">
+                  ⚡ สร้างอัตโนมัติจากชื่อ
+                </button>
+              </div>
+              <input
+                id="field-slug"
+                type="text"
+                required
+                placeholder="spa-booking-system"
+                class="w-full text-xs sm:text-sm font-mono rounded-xl border border-slate-200 px-3.5 py-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+
+            <!-- Category -->
+            <div>
+              <label for="field-category" class="block text-xs font-bold text-slate-700 mb-1">
+                หมวดหมู่ (Category) <span class="text-rose-500">*</span>
+              </label>
+              <select
+                id="field-category"
+                required
+                class="w-full text-xs sm:text-sm rounded-xl border border-slate-200 px-3.5 py-2.5 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                <!-- Rendered by JS -->
+              </select>
+            </div>
+
+            <!-- Project Type -->
+            <div>
+              <label for="field-project-type" class="block text-xs font-bold text-slate-700 mb-1">
+                ประเภทงาน (Type)
+              </label>
+              <select
+                id="field-project-type"
+                class="w-full text-xs sm:text-sm rounded-xl border border-slate-200 px-3.5 py-2.5 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                <option value="Web Application">Web Application (เว็บแอพ)</option>
+                <option value="Website">Website (เว็บไซต์ทั่วไป)</option>
+                <option value="Landing Page">Landing Page (หน้าเดียวปิดการขาย)</option>
+                <option value="E-Commerce">E-Commerce (ร้านค้าออนไลน์)</option>
+                <option value="Internal Tool">Internal Tool (ระบบภายใน)</option>
+              </select>
+            </div>
+
+            <!-- Badge -->
+            <div>
+              <label for="field-badge" class="block text-xs font-bold text-slate-700 mb-1">
+                ป้ายกำกับ (Badge)
+              </label>
+              <select
+                id="field-badge"
+                class="w-full text-xs sm:text-sm rounded-xl border border-slate-200 px-3.5 py-2.5 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                <option value="">ไม่มี Badge</option>
+                <option value="Recommended">Recommended (แนะนำ)</option>
+                <option value="Best Seller">Best Seller (ขายดีที่สุด)</option>
+                <option value="New">New (มาใหม่)</option>
+                <option value="Special Price">Special Price (ราคาพิเศษ)</option>
+                <option value="Popular">Popular (ยอดนิยม)</option>
+                <option value="Ready to Use">Ready to Use (พร้อมใช้)</option>
+                <option value="Coming Soon">Coming Soon (เร็ว ๆ นี้)</option>
+              </select>
+            </div>
+
+            <!-- Status -->
+            <div>
+              <label for="field-status" class="block text-xs font-bold text-slate-700 mb-1">
+                สถานะการแสดงผล (Status) <span class="text-rose-500">*</span>
+              </label>
+              <select
+                id="field-status"
+                required
+                class="w-full text-xs sm:text-sm rounded-xl border border-slate-200 px-3.5 py-2.5 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                <option value="draft">Draft (ฉบับร่าง ยังไม่แสดง)</option>
+                <option value="published">Published (เผยแพร่สู่สาธารณะ)</option>
+                <option value="coming_soon">Coming Soon (เร็ว ๆ นี้)</option>
+                <option value="hidden">Hidden (ซ่อนไว้)</option>
+                <option value="archived">Archived (เก็บเข้ากรุ)</option>
+              </select>
+            </div>
+
+            <!-- Sort Order -->
+            <div>
+              <label for="field-sort-order" class="block text-xs font-bold text-slate-700 mb-1">
+                ลำดับการแสดงผล (Sort Order)
+              </label>
+              <input
+                id="field-sort-order"
+                type="number"
+                value="0"
+                class="w-full text-xs sm:text-sm rounded-xl border border-slate-200 px-3.5 py-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              <span class="text-[10px] text-slate-400 mt-1 block">ตัวเลขน้อยกว่าจะแสดงขึ้นก่อน</span>
+            </div>
+
+            <!-- Views Count -->
+            <div>
+              <label for="field-views" class="block text-xs font-bold text-slate-700 mb-1">
+                ยอดผู้เข้าชม (Views)
+              </label>
+              <input
+                id="field-views"
+                type="number"
+                min="0"
+                value="0"
+                class="w-full text-xs sm:text-sm rounded-xl border border-slate-200 px-3.5 py-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              <span class="text-[10px] text-slate-400 mt-1 block">ตัวเลขยอดเข้าชมเริ่มต้นที่แสดงบนการ์ด</span>
+            </div>
+
+            <!-- Featured Toggle -->
+            <div class="flex items-center pt-6">
+              <label class="relative flex items-center gap-2 cursor-pointer">
+                <input id="field-featured" type="checkbox" class="w-4 h-4 text-blue-600 rounded border-slate-300 focus:ring-blue-500" />
+                <span class="text-xs font-bold text-slate-800">แสดงในส่วนแนะนำหน้าแรก (Featured)</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Short Description -->
+          <div>
+            <label for="field-short-desc" class="block text-xs font-bold text-slate-700 mb-1">
+              คำอธิบายสั้น (Short Description)
+            </label>
+            <textarea
+              id="field-short-desc"
+              rows="2"
+              placeholder="สรุปจุดเด่นของระบบ 1-2 ประโยคสำหรับแสดงบนการ์ด..."
+              class="w-full text-xs sm:text-sm rounded-xl border border-slate-200 px-3.5 py-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            ></textarea>
+          </div>
+
+          <!-- Full Description -->
+          <div>
+            <label for="field-full-desc" class="block text-xs font-bold text-slate-700 mb-1">
+              รายละเอียดเต็ม (Full Overview)
+            </label>
+            <textarea
+              id="field-full-desc"
+              rows="5"
+              placeholder="เขียนอธิบายภาพรวมของระบบ จุดเด่น และประโยชน์ที่ลูกค้าจะได้รับ..."
+              class="w-full text-xs sm:text-sm rounded-xl border border-slate-200 px-3.5 py-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500 leading-relaxed"
+            ></textarea>
+          </div>
+        </div>
+
+        <!-- 2. Pricing & Demo Links -->
+        <div class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-xs space-y-6">
+          <h2 class="text-base font-bold text-slate-900 flex items-center gap-2 border-b border-slate-100 pb-3">
+            <span>💰</span> ราคา และลิงก์ทดลองใช้งาน (Demo)
+          </h2>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <!-- Regular Price -->
+            <div>
+              <label for="field-regular-price" class="block text-xs font-bold text-slate-700 mb-1">
+                ราคาปกติ (Regular Price) บาท <span class="text-rose-500">*</span>
+              </label>
+              <input
+                id="field-regular-price"
+                type="number"
+                step="1"
+                min="0"
+                required
+                placeholder="2990"
+                class="w-full text-xs sm:text-sm font-bold text-slate-900 rounded-xl border border-slate-200 px-3.5 py-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+
+            <!-- Sale Price -->
+            <div>
+              <label for="field-sale-price" class="block text-xs font-bold text-slate-700 mb-1">
+                ราคาโปรโมชัน (Sale Price) บาท <span class="text-slate-400 font-normal">(ถ้าไม่มีให้เว้นว่าง)</span>
+              </label>
+              <input
+                id="field-sale-price"
+                type="number"
+                step="1"
+                min="0"
+                placeholder="1990"
+                class="w-full text-xs sm:text-sm font-bold text-emerald-600 rounded-xl border border-slate-200 px-3.5 py-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+
+            <!-- Demo URL -->
+            <div class="sm:col-span-2">
+              <label for="field-demo-url" class="block text-xs font-bold text-slate-700 mb-1">
+                ลิงก์เว็บไซต์ Demo (Vercel URL)
+              </label>
+              <input
+                id="field-demo-url"
+                type="url"
+                placeholder="https://spa-booking-demo.vercel.app"
+                class="w-full text-xs sm:text-sm font-mono rounded-xl border border-slate-200 px-3.5 py-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              <span class="text-[10px] text-slate-400 mt-1 block">ต้องขึ้นต้นด้วย https:// และเปิดในแท็บใหม่ให้ลูกค้าทดสอบ</span>
+            </div>
+
+            <!-- Video Type & Video URL -->
+            <div>
+              <label for="field-video-type" class="block text-xs font-bold text-slate-700 mb-1">
+                ประเภทวิดีโอ (Video Type)
+              </label>
+              <select
+                id="field-video-type"
+                class="w-full text-xs sm:text-sm rounded-xl border border-slate-200 px-3.5 py-2.5 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                <option value="youtube">YouTube Embed</option>
+                <option value="vimeo">Vimeo Embed</option>
+                <option value="external">External MP4 URL</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="field-video-url" class="block text-xs font-bold text-slate-700 mb-1">
+                URL วิดีโอสาธิต (Video Demo URL)
+              </label>
+              <input
+                id="field-video-url"
+                type="url"
+                placeholder="https://www.youtube.com/embed/..."
+                class="w-full text-xs sm:text-sm font-mono rounded-xl border border-slate-200 px-3.5 py-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Features & Suitable For Tags -->
+        <div class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-xs space-y-6">
+          <h2 class="text-base font-bold text-slate-900 flex items-center gap-2 border-b border-slate-100 pb-3">
+            <span>⚙️</span> ฟีเจอร์ และกลุ่มเป้าหมาย
+          </h2>
+
+          <!-- Dynamic Features List -->
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <label class="block text-xs font-bold text-slate-700">
+                รายการฟีเจอร์การทำงาน (Features)
+              </label>
+              <button id="btn-add-feature" type="button" class="text-xs font-bold text-blue-600 hover:text-blue-700">
+                + เพิ่มฟีเจอร์
+              </button>
+            </div>
+            <div id="features-list-container" class="space-y-2 mb-3">
+              <!-- Rendered by JS -->
+            </div>
+          </div>
+
+          <!-- Technologies Tags -->
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">
+              Technology Stack ที่ใช้
+            </label>
+            <div id="tech-tags-container" class="flex flex-wrap gap-2 mb-2">
+              <!-- Rendered by JS -->
+            </div>
+            <div class="flex gap-2 max-w-sm">
+              <input
+                id="input-new-tech"
+                type="text"
+                placeholder="เช่น Supabase, Tailwind, Node.js"
+                class="text-xs rounded-xl border border-slate-200 px-3 py-1.5 flex-1 focus:ring-2 focus:ring-blue-500"
+              />
+              <button id="btn-add-tech" type="button" class="px-3 py-1.5 rounded-xl bg-slate-100 text-slate-700 hover:bg-slate-200 text-xs font-semibold">
+                + เพิ่ม
+              </button>
+            </div>
+          </div>
+
+          <!-- Suitable For Tags -->
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">
+              เหมาะสำหรับธุรกิจ (Suitable For)
+            </label>
+            <div id="suitable-tags-container" class="flex flex-wrap gap-2 mb-2">
+              <!-- Rendered by JS -->
+            </div>
+            <div class="flex gap-2 max-w-sm">
+              <input
+                id="input-new-suitable"
+                type="text"
+                placeholder="เช่น คลินิก, ร้านอาหาร, ช่างซ่อม"
+                class="text-xs rounded-xl border border-slate-200 px-3 py-1.5 flex-1 focus:ring-2 focus:ring-blue-500"
+              />
+              <button id="btn-add-suitable" type="button" class="px-3 py-1.5 rounded-xl bg-slate-100 text-slate-700 hover:bg-slate-200 text-xs font-semibold">
+                + เพิ่ม
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Media & Gallery Upload -->
+        <div class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-xs space-y-6">
+          <h2 class="text-base font-bold text-slate-900 flex items-center gap-2 border-b border-slate-100 pb-3">
+            <span>🖼️</span> รูปภาพปก และภาพแกลเลอรี (Screenshots)
+          </h2>
+
+          <!-- Cover Image Upload -->
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">
+              รูปภาพหน้าปกหลัก (Cover Image - แนะนำ 16:9 1600x900px)
+            </label>
+            <input
+              id="field-cover-file"
+              type="file"
+              accept="image/*"
+              class="block w-full text-xs text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 cursor-pointer"
+            />
+            <div id="cover-preview-box" class="mt-3 hidden">
+              <div class="w-48 aspect-video-box rounded-xl overflow-hidden border border-slate-200 bg-slate-100">
+                <img id="cover-preview-img" src="" alt="Cover Preview" class="w-full h-full object-cover" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Gallery Multi Upload -->
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">
+              ภาพสกรีนช็อตในแกลเลอรี (Gallery Screenshots - เลือกได้หลายรูป)
+            </label>
+            <input
+              id="field-gallery-files"
+              type="file"
+              multiple
+              accept="image/*"
+              class="block w-full text-xs text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-slate-100 file:text-slate-700 hover:file:bg-slate-200 cursor-pointer"
+            />
+            <div id="gallery-thumbnails-container" class="flex flex-wrap gap-3 mt-3">
+              <!-- Rendered by JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Technical SEO Meta (Requirement #60, #61) -->
+        <div class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-xs space-y-4">
+          <h2 class="text-base font-bold text-slate-900 flex items-center gap-2 border-b border-slate-100 pb-3">
+            <span>🌐</span> SEO & Meta Tags
+          </h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="field-seo-title" class="block text-xs font-bold text-slate-700 mb-1">
+                SEO Title (เว้นว่างเพื่อใช้ชื่อระบบ)
+              </label>
+              <input
+                id="field-seo-title"
+                type="text"
+                placeholder="เช่น ระบบจองคิวร้านสปา ราคาพิเศษ ฿1,990 | ThinkFaster"
+                class="w-full text-xs rounded-xl border border-slate-200 px-3.5 py-2.5 focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+            <div>
+              <label for="field-meta-desc" class="block text-xs font-bold text-slate-700 mb-1">
+                Meta Description
+              </label>
+              <input
+                id="field-meta-desc"
+                type="text"
+                placeholder="คำอธิบายสำหรับ Google และ Social Share..."
+                class="w-full text-xs rounded-xl border border-slate-200 px-3.5 py-2.5 focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Form Submit Bar -->
+        <div class="p-4 bg-white rounded-2xl border border-slate-200 flex items-center justify-between shadow-sm sticky bottom-4 z-20">
+          <a href="projects.html" class="px-4 py-2 text-xs font-medium text-slate-600 hover:text-slate-900">
+            ย้อนกลับ
+          </a>
+          <button
+            id="btn-save-project"
+            type="submit"
+            class="px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-bold text-sm shadow-md shadow-blue-500/25 transition-all flex items-center gap-2"
+          >
+            <span>บันทึกข้อมูลระบบ</span>
+            <div id="save-spinner" class="hidden w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+          </button>
+        </div>
+      </form>
+      </div>
+    </main>
+  </div>
+
+  <script type="module">
+    import { initAdminLayout } from './js/admin-layout.js';
+    import { initProjectForm } from './js/admin-form.js';
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      await initAdminLayout('project-form');
+      await initProjectForm();
+    });
+  </script>
+</body>
+</html>

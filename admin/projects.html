@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>จัดการระบบ (Projects) | ThinkFaster Admin</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="../css/app.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body class="bg-slate-50 text-slate-900 flex h-screen overflow-hidden">
+
+  <div id="admin-sidebar-container" class="shrink-0"></div>
+
+  <div class="flex-1 flex flex-col min-w-0 h-screen overflow-hidden">
+    <div id="admin-topbar-container" class="shrink-0"></div>
+
+    <main class="flex-1 overflow-y-auto admin-scroll p-4 sm:p-8">
+      <div class="max-w-7xl w-full mx-auto space-y-6 pb-16">
+      <!-- Header -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">รายการระบบทั้งหมด (Projects)</h1>
+          <p class="text-xs sm:text-sm text-slate-500 mt-1">เพิ่ม แก้ไข คัดลอก และควบคุมสถานะการแสดงผลของระบบ</p>
+        </div>
+        <div>
+          <a
+            href="project-form.html"
+            class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs sm:text-sm shadow-md shadow-blue-500/20 transition-all"
+          >
+            <span>+</span> เพิ่มระบบใหม่
+          </a>
+        </div>
+      </div>
+
+      <!-- Filters & Search Toolbar -->
+      <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-xs grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+        <!-- Search -->
+        <div>
+          <label class="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1">ค้นหา</label>
+          <input
+            id="search-input"
+            type="text"
+            placeholder="ค้นหาชื่อ, รหัส, หมวดหมู่..."
+            class="w-full text-xs rounded-xl border border-slate-200 px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
+
+        <!-- Filter Category -->
+        <div>
+          <label class="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1">หมวดหมู่</label>
+          <select id="filter-category" class="w-full text-xs rounded-xl border border-slate-200 px-3 py-2.5 bg-white text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <option value="all">ทุกหมวดหมู่</option>
+          </select>
+        </div>
+
+        <!-- Filter Status -->
+        <div>
+          <label class="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1">สถานะ</label>
+          <select id="filter-status" class="w-full text-xs rounded-xl border border-slate-200 px-3 py-2.5 bg-white text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <option value="all">ทุกสถานะ (ยกเว้น Archived)</option>
+            <option value="published">Published (แสดงจริง)</option>
+            <option value="draft">Draft (ฉบับร่าง)</option>
+            <option value="coming_soon">Coming Soon</option>
+            <option value="archived">Archived (เก็บเข้ากรุ)</option>
+          </select>
+        </div>
+
+        <!-- Sorting -->
+        <div>
+          <label class="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1">เรียงตาม</label>
+          <select id="sort-select" class="w-full text-xs rounded-xl border border-slate-200 px-3 py-2.5 bg-white text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <option value="order">ลำดับที่กำหนด (Sort Order)</option>
+            <option value="code">รหัสระบบ (Code)</option>
+            <option value="newest">อัปเดตล่าสุด</option>
+            <option value="price_desc">ราคาสูงไปต่ำ</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Count -->
+      <div class="flex items-center justify-between text-xs text-slate-500 font-medium">
+        <span id="admin-projects-count">กำลังโหลดรายการ...</span>
+      </div>
+
+      <!-- Projects Table -->
+      <div class="bg-white rounded-3xl border border-slate-200 shadow-xs overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="bg-slate-50 text-[11px] font-bold text-slate-400 uppercase tracking-wider border-b border-slate-100">
+                <th class="py-3 px-4">รหัส</th>
+                <th class="py-3 px-4">ระบบ & Cover</th>
+                <th class="py-3 px-4">หมวดหมู่</th>
+                <th class="py-3 px-4">ราคา</th>
+                <th class="py-3 px-4">สถานะ</th>
+                <th class="py-3 px-4">อัปเดต</th>
+                <th class="py-3 px-4 text-right">การจัดการ</th>
+              </tr>
+            </thead>
+            <tbody id="admin-projects-tbody">
+              <!-- Rendered by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+      </div>
+    </main>
+  </div>
+
+  <script type="module">
+    import { initAdminLayout } from './js/admin-layout.js';
+    import { initAdminProjects } from './js/admin-projects.js';
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      await initAdminLayout('projects');
+      document.getElementById('admin-page-title').textContent = 'จัดการระบบ (Projects)';
+      await initAdminProjects();
+    });
+  </script>
+</body>
+</html>

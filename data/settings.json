@@ -1,0 +1,72 @@
+{
+  "general": {
+    "site_name": "ThinkFaster",
+    "site_tagline": "แหล่งรวมระบบเว็บไซต์และเว็บแอปพลิเคชันสำเร็จรูปพร้อมใช้งาน",
+    "site_description": "เลือกดูระบบที่ต้องการ ทดลองใช้งาน Demo จริง และสั่งซื้อเพื่อเริ่มต้นธุรกิจได้ทันที ติดตั้งง่าย ปรับแต่งได้ตามความต้องการ",
+    "logo_text": "ThinkFaster",
+    "logo_badge": "Store",
+    "primary_color": "#2563EB",
+    "default_og_image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
+    "currency": "THB",
+    "footer_text": "แพลตฟอร์มศูนย์รวมระบบเว็บไซต์และเว็บแอปพลิเคชันสำเร็จรูป ออกแบบด้วยมาตรฐานระดับสากล ใช้งานง่าย โหลดไว พร้อมต่อยอดธุรกิจของคุณให้เติบโตอย่างมั่นคง",
+    "copyright": "© 2026 ThinkFaster. All rights reserved."
+  },
+  "hero": {
+    "title": "เว็บไซต์และระบบพร้อมใช้งาน\nสำหรับธุรกิจของคุณ",
+    "subtitle": "เลือกดูระบบที่ต้องการ ทดลองใช้งานจริงผ่าน Demo และสอบถามราคาเพื่อเริ่มใช้งานได้ทันที ไม่ต้องรอสร้างใหม่จากศูนย์",
+    "cta_primary_text": "ดูระบบทั้งหมด",
+    "cta_primary_url": "projects.html",
+    "cta_secondary_text": "ติดต่อสอบถาม",
+    "cta_secondary_url": "contact.html",
+    "badge_text": "⚡ ระบบสำเร็จรูปพร้อมส่งมอบใน 24-48 ชม."
+  },
+  "contacts": {
+    "line": {
+      "enabled": true,
+      "id": "@thinkfaster",
+      "url": "https://line.me/ti/p/@thinkfaster",
+      "label": "LINE Official Account"
+    },
+    "messenger": {
+      "enabled": true,
+      "url": "https://m.me/thinkfasterapp",
+      "label": "Facebook Messenger"
+    },
+    "phone": {
+      "enabled": true,
+      "number": "0812345678",
+      "display": "081-234-5678",
+      "label": "โทรศัพท์สายด่วน"
+    },
+    "facebook": {
+      "enabled": true,
+      "url": "https://facebook.com/thinkfasterapp",
+      "label": "Facebook Page"
+    },
+    "email": {
+      "enabled": true,
+      "address": "contact@thinkfaster.dev",
+      "label": "Email"
+    },
+    "tiktok": {
+      "enabled": false,
+      "url": "https://tiktok.com/@thinkfaster",
+      "label": "TikTok"
+    },
+    "business_hours": "จันทร์ - อาทิตย์: 09:00 - 21:00 น."
+  },
+  "order_template": "Code: {{project_code}}\nProject Name: {{project_name}}\nราคา: {{price}} บาท\nDemo: {{demo_url}}\n\nสนใจสั่งซื้อระบบนี้ครับ/ค่ะ",
+  "tracking": {
+    "gtm_id": "",
+    "ga4_id": "",
+    "meta_pixel_id": "",
+    "tiktok_pixel_id": "",
+    "enable_ga4": false,
+    "enable_meta_pixel": false,
+    "enable_tiktok_pixel": false
+  },
+  "supabase": {
+    "url": "https://pmmuylosdqklzsuczqrv.supabase.co",
+    "anon_key": ""
+  }
+}

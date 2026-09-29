@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>จัดการหมวดหมู่ (Categories) | ThinkFaster Admin</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="../css/app.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body class="bg-slate-50 text-slate-900 flex h-screen overflow-hidden">
+
+  <div id="admin-sidebar-container" class="shrink-0"></div>
+
+  <div class="flex-1 flex flex-col min-w-0 h-screen overflow-hidden">
+    <div id="admin-topbar-container" class="shrink-0"></div>
+
+    <main class="flex-1 overflow-y-auto admin-scroll p-4 sm:p-8">
+      <div class="max-w-5xl w-full mx-auto space-y-6 pb-16">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">หมวดหมู่ระบบ (Categories)</h1>
+          <p class="text-xs sm:text-sm text-slate-500 mt-1">จัดการชื่อหมวดหมู่ ลำดับ และการเปิด-ปิดใช้งาน</p>
+        </div>
+        <button
+          id="btn-open-add-cat"
+          type="button"
+          class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs sm:text-sm shadow-md shadow-blue-500/20 transition-all"
+        >
+          <span>+</span> เพิ่มหมวดหมู่ใหม่
+        </button>
+      </div>
+
+      <div class="flex items-center justify-between text-xs text-slate-500 font-medium">
+        <span id="categories-count">กำลังโหลด...</span>
+      </div>
+
+      <!-- Categories Table -->
+      <div class="bg-white rounded-3xl border border-slate-200 shadow-xs overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="bg-slate-50 text-[11px] font-bold text-slate-400 uppercase tracking-wider border-b border-slate-100">
+                <th class="py-3 px-4">ลำดับ</th>
+                <th class="py-3 px-4">ชื่อหมวดหมู่</th>
+                <th class="py-3 px-4">Slug</th>
+                <th class="py-3 px-4">คำอธิบาย</th>
+                <th class="py-3 px-4">สถานะ</th>
+                <th class="py-3 px-4 text-right">การจัดการ</th>
+              </tr>
+            </thead>
+            <tbody id="categories-tbody">
+              <!-- Rendered by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Category Edit/Add Modal -->
+  <div id="category-modal" class="hidden fixed inset-0 z-50 modal-backdrop flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl border border-slate-200 shadow-2xl max-w-md w-full p-6 space-y-4 animate-slide-down">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <h3 id="modal-cat-title" class="font-bold text-slate-900 text-base">เพิ่มหมวดหมู่ใหม่</h3>
+        <button id="btn-close-cat-modal" type="button" class="text-slate-400 hover:text-slate-600 font-bold p-1">✕</button>
+      </div>
+
+      <form id="category-form" class="space-y-4">
+        <input type="hidden" id="modal-cat-id" />
+
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">ชื่อหมวดหมู่ <span class="text-rose-500">*</span></label>
+          <input
+            id="modal-cat-name"
+            type="text"
+            required
+            placeholder="เช่น Booking System"
+            class="w-full text-xs rounded-xl border border-slate-200 px-3.5 py-2.5 focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">Slug</label>
+          <input
+            id="modal-cat-slug"
+            type="text"
+            placeholder="booking-system"
+            class="w-full text-xs font-mono rounded-xl border border-slate-200 px-3.5 py-2.5 focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">คำอธิบายสั้น</label>
+          <input
+            id="modal-cat-desc"
+            type="text"
+            placeholder="ระบบสำหรับธุรกิจบริการและนัดหมาย"
+            class="w-full text-xs rounded-xl border border-slate-200 px-3.5 py-2.5 focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">ลำดับ (Sort Order)</label>
+            <input
+              id="modal-cat-sort"
+              type="number"
+              value="1"
+              class="w-full text-xs rounded-xl border border-slate-200 px-3.5 py-2.5 focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+          <div class="flex items-center pt-5">
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input id="modal-cat-active" type="checkbox" checked class="w-4 h-4 text-blue-600 rounded" />
+              <span class="text-xs font-semibold text-slate-700">เปิดใช้งาน (Active)</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="pt-4 border-t border-slate-100 flex items-center justify-end gap-2">
+          <button type="submit" class="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs shadow-sm">
+            บันทึกหมวดหมู่
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script type="module">
+    import { initAdminLayout } from './js/admin-layout.js';
+    import { initAdminCategories } from './js/admin-categories.js';
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      await initAdminLayout('categories');
+      document.getElementById('admin-page-title').textContent = 'หมวดหมู่ (Categories)';
+      await initAdminCategories();
+    });
+  </script>
+</body>
+</html>

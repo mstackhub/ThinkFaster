@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 ไม่พบหน้าที่คุณค้นหา | ThinkFaster</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body class="bg-slate-50 text-slate-900 flex flex-col min-h-screen">
+
+  <div id="site-header"></div>
+
+  <main class="flex-1 flex items-center justify-center py-20 px-4">
+    <div class="max-w-md w-full text-center bg-white p-8 sm:p-10 rounded-3xl border border-slate-200 shadow-sm">
+      <div class="w-20 h-20 rounded-3xl bg-blue-50 text-blue-600 flex items-center justify-center mx-auto mb-6 text-4xl font-extrabold">
+        404
+      </div>
+      <h1 class="text-2xl font-extrabold text-slate-900 mb-2">ไม่พบหน้าที่คุณกำลังค้นหา</h1>
+      <p class="text-sm text-slate-600 leading-relaxed mb-8">
+        หน้าเว็บที่คุณต้องการอาจถูกย้าย ลบออก หรือพิมพ์ที่อยู่ URL ไม่ถูกต้อง กรุณาเลือกเมนูด้านล่าง
+      </p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+        <a href="index.html" class="w-full sm:w-auto px-5 py-3 rounded-xl bg-blue-600 text-white font-semibold text-sm hover:bg-blue-700 shadow-md transition-colors">
+          กลับสู่หน้าหลัก
+        </a>
+        <a href="projects.html" class="w-full sm:w-auto px-5 py-3 rounded-xl bg-slate-100 text-slate-700 font-semibold text-sm hover:bg-slate-200 transition-colors">
+          ดูระบบทั้งหมด
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+  <div id="floating-contact-container"></div>
+
+  <script type="module">
+    import { renderHeader } from './js/components/header.js';
+    import { renderFooter } from './js/components/footer.js';
+    import { renderFloatingContact } from './js/components/floating-contact.js';
+    import { getSettings } from './js/api.js';
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      renderHeader('');
+      const settings = await getSettings();
+      renderFooter(settings);
+      renderFloatingContact(settings);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>เกี่ยวกับบริการและขั้นตอนการส่งมอบ | ThinkFaster</title>
+  <meta name="description" content="ทำความเข้าใจบริการ สิ่งที่ลูกค้าจะได้รับเมื่อสั่งซื้อระบบ และขั้นตอนการส่งมอบงานกับ ThinkFaster">
+  <link rel="canonical" href="https://thinkfaster.dev/about.html">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/app.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body class="bg-slate-50 text-slate-900 flex flex-col min-h-screen">
+
+  <div id="site-header"></div>
+
+  <main class="flex-1 py-12 sm:py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      <!-- Title -->
+      <div class="text-center max-w-2xl mx-auto">
+        <span class="text-xs font-bold uppercase tracking-wider text-blue-600">About Our Service</span>
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-1">
+          บริการของเราคืออะไร และคุณจะได้รับอะไรบ้าง?
+        </h1>
+        <p class="text-sm sm:text-base text-slate-600 mt-2">
+          ThinkFaster เป็น Marketplace รวบรวมระบบเว็บไซต์และเว็บแอปพลิเคชันสำเร็จรูปที่สร้างไว้แล้ว เพื่อให้ธุรกิจของคุณเริ่มเปิดตัวได้รวดเร็วที่สุด
+        </p>
+      </div>
+
+      <!-- What you get -->
+      <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm space-y-6">
+        <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2">
+          <span>📦</span> สิ่งที่ลูกค้าจะได้รับเมื่อสั่งซื้อระบบ
+        </h2>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100">
+            <h3 class="font-bold text-sm text-slate-900 mb-1">1. Full Source Code 100%</h3>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              รับสิทธิ์และซอร์สโค้ดฉบับสมบูรณ์ (HTML, Tailwind CSS, JavaScript) สามารถนำไปต่อยอด แก้ไข หรือจ้างโปรแกรมเมอร์ปรับแต่งได้อิสระ
+            </p>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100">
+            <h3 class="font-bold text-sm text-slate-900 mb-1">2. ติดตั้งขึ้น Vercel Hosting ฟรี</h3>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              เราช่วย Deploy ระบบขึ้นโฮสติ้งระดับโลกอย่าง Vercel ให้ฟรี มี SSL (HTTPS) อัตโนมัติ ปลอดภัย และโหลดเร็วสูง
+            </p>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100">
+            <h3 class="font-bold text-sm text-slate-900 mb-1">3. เชื่อมต่อฐานข้อมูล Supabase</h3>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              สำหรับระบบที่มีฐานข้อมูล เราช่วยสร้างตารางใน PostgreSQL และเชื่อมต่อระบบหลังบ้านให้พร้อมบันทึกข้อมูลจริง
+            </p>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100">
+            <h3 class="font-bold text-sm text-slate-900 mb-1">4. ช่วยผูก Custom Domain ของลูกค้า</h3>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              หากลูกค้ามีชื่อโดเมน (เช่น yourcompany.com) เราช่วยตั้งค่า DNS ชี้ไปยังระบบเว็บไซต์โดยไม่มีค่าบริการเพิ่ม
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Delivery Steps -->
+      <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm space-y-6">
+        <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2">
+          <span>⏱️</span> ขั้นตอนการทำงานและระยะเวลาการส่งมอบ
+        </h2>
+
+        <div class="space-y-4">
+          <div class="flex items-start gap-4">
+            <div class="w-8 h-8 rounded-full bg-blue-600 text-white font-bold flex items-center justify-center text-sm shrink-0">1</div>
+            <div>
+              <h4 class="font-bold text-sm text-slate-900">ติดต่อสั่งซื้อและระบุความต้องการ</h4>
+              <p class="text-xs text-slate-600 leading-relaxed">เลือกระบบที่ชอบ แล้วทักเข้ามาทาง LINE OA หรือ Messenger ส่งข้อมูลโลโก้ สี หรือเนื้อหาที่ต้องการใส่ลงในเว็บ</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4">
+            <div class="w-8 h-8 rounded-full bg-blue-600 text-white font-bold flex items-center justify-center text-sm shrink-0">2</div>
+            <div>
+              <h4 class="font-bold text-sm text-slate-900">ทีมงานปรับแต่งข้อมูล (ระยะเวลา 24-48 ชั่วโมง)</h4>
+              <p class="text-xs text-slate-600 leading-relaxed">ทีมงานลงข้อมูล ใส่รูปภาพ และปรับโทนสีให้ตรงกับแบรนด์ของคุณ พร้อมตรวจสอบความเรียบร้อย</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4">
+            <div class="w-8 h-8 rounded-full bg-blue-600 text-white font-bold flex items-center justify-center text-sm shrink-0">3</div>
+            <div>
+              <h4 class="font-bold text-sm text-slate-900">ตรวจรับงานและส่งมอบระบบ</h4>
+              <p class="text-xs text-slate-600 leading-relaxed">ลูกค้าทดลองใช้งานจริง หากมีจุดแก้ไขเล็กน้อยสามารถแจ้งปรับได้ทันที จากนั้นทีมงานส่งมอบโค้ดและสิทธิ์จัดการทั้งหมด</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="text-center pt-4">
+        <a href="projects.html" class="inline-flex items-center px-6 py-3.5 rounded-xl bg-blue-600 text-white font-semibold text-sm hover:bg-blue-700 shadow-md transition-colors">
+          ดูระบบทั้งหมดที่มีให้เลือก
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+  <div id="floating-contact-container"></div>
+
+  <script type="module">
+    import { renderHeader } from './js/components/header.js';
+    import { renderFooter } from './js/components/footer.js';
+    import { renderFloatingContact } from './js/components/floating-contact.js';
+    import { renderCookieBanner } from './js/components/cookie-banner.js';
+    import { getSettings } from './js/api.js';
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      renderHeader('about');
+      renderCookieBanner();
+      const settings = await getSettings();
+      renderFooter(settings);
+      renderFloatingContact(settings);
+    });
+  </script>
+</body>
+</html>

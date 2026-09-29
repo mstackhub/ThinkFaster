@@ -45,6 +45,13 @@ h1, h2, h3, h4, h5, h6 {
   box-decoration-break: clone;
 }
 
+/* Section eyebrow subtitles spacing */
+span.text-xs.font-bold.uppercase.tracking-wider.text-blue-600,
+span.text-xs.font-bold.uppercase.tracking-wider.text-blue-400 {
+  display: inline-block;
+  margin-bottom: 0.75rem;
+}
+
 /* Safe area for mobile */
 .pb-safe {
   padding-bottom: calc(1rem + env(safe-area-inset-bottom, 0px));

@@ -193,8 +193,10 @@
     import { initAdminSettings } from './js/admin-settings.js';
 
     document.addEventListener('DOMContentLoaded', async () => {
-      await initAdminLayout('settings');
-      document.getElementById('admin-page-title').textContent = 'ตั้งค่าเว็บไซต์ (Settings)';
+      const session = await initAdminLayout('settings');
+      if (!session) return;
+      const titleEl = document.getElementById('admin-page-title');
+      if (titleEl) titleEl.textContent = 'ตั้งค่าเว็บไซต์ (Settings)';
       await initAdminSettings();
     });
   </script>

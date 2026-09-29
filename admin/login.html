@@ -71,7 +71,7 @@
     document.addEventListener('DOMContentLoaded', () => {
       // If already logged in, redirect to admin dashboard
       if (getAdminSession()) {
-        window.location.href = 'index.html';
+        window.location.href = '/admin';
       }
 
       const form = document.getElementById('admin-login-form');
@@ -102,7 +102,7 @@
                 token: data.session.access_token,
                 logged_in_at: new Date().toISOString()
               });
-              window.location.href = 'index.html';
+              window.location.href = '/admin';
               return;
             }
           }
@@ -115,7 +115,7 @@
               source: 'local_master',
               logged_in_at: new Date().toISOString()
             });
-            window.location.href = 'index.html';
+            window.location.href = '/admin';
           } else {
             throw new Error('กรุณากรอกอีเมลและรหัสผ่าน');
           }

@@ -113,8 +113,10 @@
     import { initAdminProjects } from './js/admin-projects.js';
 
     document.addEventListener('DOMContentLoaded', async () => {
-      await initAdminLayout('projects');
-      document.getElementById('admin-page-title').textContent = 'จัดการระบบ (Projects)';
+      const session = await initAdminLayout('projects');
+      if (!session) return;
+      const titleEl = document.getElementById('admin-page-title');
+      if (titleEl) titleEl.textContent = 'จัดการระบบ (Projects)';
       await initAdminProjects();
     });
   </script>

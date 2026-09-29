@@ -26,6 +26,8 @@ export function clearAdminSession() {
  * Route protection guard: redirect to login.html if not authenticated
  */
 export async function requireAuth() {
+  const localSession = getAdminSession();
+
   const sb = getSupabase();
   if (sb) {
     try {
@@ -45,9 +47,8 @@ export async function requireAuth() {
   }
 
   // Check local session
-  const localSession = getAdminSession();
   if (!localSession) {
-    window.location.href = 'login.html';
+    window.location.href = '/admin/login';
     return null;
   }
 
@@ -67,7 +68,7 @@ export function setupAdminLogout() {
           try { sb.auth.signOut(); } catch (err) {}
         }
         clearAdminSession();
-        window.location.href = 'login.html';
+        window.location.href = '/admin/login';
       }
     });
   });

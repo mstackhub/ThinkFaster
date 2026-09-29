@@ -25,7 +25,7 @@ export async function initAdminLayout(activeTab = 'dashboard') {
       <aside class="hidden lg:flex flex-col w-64 bg-slate-900 border-r border-slate-800 text-slate-300 h-screen sticky top-0 shrink-0 select-none">
         <!-- Brand -->
         <div class="h-16 flex items-center px-6 border-b border-slate-800 shrink-0">
-          <a href="index.html" class="font-extrabold text-xl tracking-tight text-white">
+          <a href="/admin" class="font-extrabold text-xl tracking-tight text-white">
             ThinkFaster
           </a>
         </div>
@@ -33,7 +33,7 @@ export async function initAdminLayout(activeTab = 'dashboard') {
         <!-- Navigation Menu -->
         <nav class="flex-1 px-4 py-6 space-y-1.5 overflow-y-auto admin-scroll">
           <a
-            href="index.html"
+            href="/admin"
             class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-colors ${activeTab === 'dashboard' ? 'bg-blue-600 text-white shadow-sm' : 'text-slate-400 hover:text-white hover:bg-slate-800/60'}"
           >
             <svg class="w-5 h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -43,7 +43,7 @@ export async function initAdminLayout(activeTab = 'dashboard') {
           </a>
 
           <a
-            href="projects.html"
+            href="/admin/projects"
             class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-colors ${activeTab === 'projects' ? 'bg-blue-600 text-white shadow-sm' : 'text-slate-400 hover:text-white hover:bg-slate-800/60'}"
           >
             <svg class="w-5 h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -53,7 +53,7 @@ export async function initAdminLayout(activeTab = 'dashboard') {
           </a>
 
           <a
-            href="project-form.html"
+            href="/admin/project-form"
             class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-colors ${activeTab === 'project-form' ? 'bg-blue-600 text-white shadow-sm' : 'text-slate-400 hover:text-white hover:bg-slate-800/60'}"
           >
             <svg class="w-5 h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -63,7 +63,7 @@ export async function initAdminLayout(activeTab = 'dashboard') {
           </a>
 
           <a
-            href="categories.html"
+            href="/admin/categories"
             class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-colors ${activeTab === 'categories' ? 'bg-blue-600 text-white shadow-sm' : 'text-slate-400 hover:text-white hover:bg-slate-800/60'}"
           >
             <svg class="w-5 h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -73,7 +73,7 @@ export async function initAdminLayout(activeTab = 'dashboard') {
           </a>
 
           <a
-            href="settings.html"
+            href="/admin/settings"
             class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-colors ${activeTab === 'settings' ? 'bg-blue-600 text-white shadow-sm' : 'text-slate-400 hover:text-white hover:bg-slate-800/60'}"
           >
             <svg class="w-5 h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -85,7 +85,7 @@ export async function initAdminLayout(activeTab = 'dashboard') {
 
           <div class="pt-4 mt-4 border-t border-slate-800">
             <a
-              href="../index.html"
+              href="/"
               target="_blank"
               class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium text-slate-400 hover:text-white hover:bg-slate-800/60 transition-colors"
             >
@@ -144,7 +144,7 @@ export async function initAdminLayout(activeTab = 'dashboard') {
 
         <div class="flex items-center gap-3">
           <a
-            href="project-form.html"
+            href="/admin/project-form"
             class="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold shadow-sm transition-colors"
           >
             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
@@ -168,11 +168,11 @@ export async function initAdminLayout(activeTab = 'dashboard') {
             <button id="admin-mobile-close" type="button" class="p-1 rounded-lg text-slate-400 hover:text-white">✕</button>
           </div>
           <nav class="flex-1 py-4 space-y-1">
-            <a href="index.html" class="block px-3 py-2 rounded-lg text-sm ${activeTab === 'dashboard' ? 'bg-blue-600 text-white' : 'text-slate-300 hover:bg-slate-800'}">แดชบอร์ดภาพรวม</a>
-            <a href="projects.html" class="block px-3 py-2 rounded-lg text-sm ${activeTab === 'projects' ? 'bg-blue-600 text-white' : 'text-slate-300 hover:bg-slate-800'}">รายการระบบ (Projects)</a>
-            <a href="project-form.html" class="block px-3 py-2 rounded-lg text-sm ${activeTab === 'project-form' ? 'bg-blue-600 text-white' : 'text-slate-300 hover:bg-slate-800'}">เพิ่มระบบใหม่</a>
-            <a href="categories.html" class="block px-3 py-2 rounded-lg text-sm ${activeTab === 'categories' ? 'bg-blue-600 text-white' : 'text-slate-300 hover:bg-slate-800'}">หมวดหมู่ (Categories)</a>
-            <a href="settings.html" class="block px-3 py-2 rounded-lg text-sm ${activeTab === 'settings' ? 'bg-blue-600 text-white' : 'text-slate-300 hover:bg-slate-800'}">ตั้งค่าเว็บไซต์</a>
+            <a href="/admin" class="block px-3 py-2 rounded-lg text-sm ${activeTab === 'dashboard' ? 'bg-blue-600 text-white' : 'text-slate-300 hover:bg-slate-800'}">แดชบอร์ดภาพรวม</a>
+            <a href="/admin/projects" class="block px-3 py-2 rounded-lg text-sm ${activeTab === 'projects' ? 'bg-blue-600 text-white' : 'text-slate-300 hover:bg-slate-800'}">รายการระบบ (Projects)</a>
+            <a href="/admin/project-form" class="block px-3 py-2 rounded-lg text-sm ${activeTab === 'project-form' ? 'bg-blue-600 text-white' : 'text-slate-300 hover:bg-slate-800'}">เพิ่มระบบใหม่</a>
+            <a href="/admin/categories" class="block px-3 py-2 rounded-lg text-sm ${activeTab === 'categories' ? 'bg-blue-600 text-white' : 'text-slate-300 hover:bg-slate-800'}">หมวดหมู่ (Categories)</a>
+            <a href="/admin/settings" class="block px-3 py-2 rounded-lg text-sm ${activeTab === 'settings' ? 'bg-blue-600 text-white' : 'text-slate-300 hover:bg-slate-800'}">ตั้งค่าเว็บไซต์</a>
           </nav>
           <div class="pt-4 border-t border-slate-800">
             <button data-admin-logout type="button" class="w-full text-left px-3 py-2 rounded-lg text-sm text-rose-400 hover:bg-slate-800">ออกจากระบบ</button>
@@ -196,4 +196,5 @@ export async function initAdminLayout(activeTab = 'dashboard') {
   }
 
   setupAdminLogout();
+  return session;
 }

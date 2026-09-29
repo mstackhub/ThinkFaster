@@ -133,8 +133,10 @@
     import { initAdminCategories } from './js/admin-categories.js';
 
     document.addEventListener('DOMContentLoaded', async () => {
-      await initAdminLayout('categories');
-      document.getElementById('admin-page-title').textContent = 'หมวดหมู่ (Categories)';
+      const session = await initAdminLayout('categories');
+      if (!session) return;
+      const titleEl = document.getElementById('admin-page-title');
+      if (titleEl) titleEl.textContent = 'หมวดหมู่ (Categories)';
       await initAdminCategories();
     });
   </script>

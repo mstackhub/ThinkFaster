@@ -477,7 +477,8 @@
     import { initProjectForm } from './js/admin-form.js';
 
     document.addEventListener('DOMContentLoaded', async () => {
-      await initAdminLayout('project-form');
+      const session = await initAdminLayout('project-form');
+      if (!session) return;
       await initProjectForm();
     });
   </script>

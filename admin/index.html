@@ -195,8 +195,10 @@
     import { initAdminDashboard } from './js/admin-dashboard.js';
 
     document.addEventListener('DOMContentLoaded', async () => {
-      await initAdminLayout('dashboard');
-      document.getElementById('admin-page-title').textContent = 'แดชบอร์ดภาพรวม';
+      const session = await initAdminLayout('dashboard');
+      if (!session) return;
+      const titleEl = document.getElementById('admin-page-title');
+      if (titleEl) titleEl.textContent = 'แดชบอร์ดภาพรวม';
       await initAdminDashboard();
     });
   </script>

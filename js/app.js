@@ -35,20 +35,14 @@ async function initHomePage() {
     if (heroTitle && settings.hero.title) {
       const parts = settings.hero.title.split('\n');
       if (parts.length >= 2) {
-        let line1 = escapeHTML(parts[0].trim());
+        const line1 = escapeHTML(parts[0].trim());
         const line2 = escapeHTML(parts.slice(1).join(' ').trim());
-        if (line1.includes('พร้อมใช้งาน')) {
-          line1 = line1.replace('พร้อมใช้งาน', '<span class="inline-block whitespace-nowrap">พร้อมใช้งาน</span>');
-          if (line1.includes('เว็บไซต์และระบบ')) {
-            line1 = line1.replace('เว็บไซต์และระบบ', '<span class="inline-block">เว็บไซต์และระบบ</span>');
-          }
-        }
         heroTitle.innerHTML = `
-          ${line1}<br class="hidden sm:inline">
-          <span class="block sm:inline text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700">${line2}</span>
+          <span class="block whitespace-nowrap">${line1}</span>
+          <span class="inline-block mt-1 sm:mt-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 pb-2 sm:pb-3">${line2}</span>
         `;
       } else {
-        heroTitle.innerText = settings.hero.title;
+        heroTitle.innerHTML = `<span class="block whitespace-nowrap">${escapeHTML(settings.hero.title)}</span>`;
       }
     }
     if (heroSubtitle && settings.hero.subtitle) heroSubtitle.innerText = settings.hero.subtitle;

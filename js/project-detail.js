@@ -237,37 +237,53 @@ function renderProjectDetail(p) {
 }
 
 function renderGallery(p) {
+  const coverContainer = document.getElementById('detail-cover-container') || document.querySelector('.aspect-video-box');
   const coverImg = document.getElementById('detail-cover-image');
   const thumbsContainer = document.getElementById('detail-gallery-thumbs');
   const allImages = [p.cover_image, ...(p.gallery || [])].filter(Boolean);
+  let currentGalleryIndex = 0;
+
+  const handleOpenLightbox = () => {
+    if (allImages.length > 0) {
+      openLightbox(allImages, currentGalleryIndex);
+    }
+  };
 
   if (coverImg) {
     coverImg.src = p.cover_image || 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=80';
     coverImg.alt = p.name;
-    coverImg.onclick = () => openLightbox(allImages, 0);
+    coverImg.style.cursor = 'pointer';
+    coverImg.onclick = handleOpenLightbox;
+  }
+
+  if (coverContainer) {
+    coverContainer.style.cursor = 'pointer';
+    coverContainer.onclick = handleOpenLightbox;
   }
 
   if (thumbsContainer && allImages.length > 1) {
     thumbsContainer.innerHTML = allImages.map((img, idx) => `
       <button
         type="button"
-        class="gallery-thumb-btn w-20 h-14 sm:w-24 sm:h-16 rounded-lg overflow-hidden border-2 transition-all shrink-0 ${idx === 0 ? 'border-blue-600 scale-105' : 'border-slate-200 hover:border-slate-400'}"
+        class="gallery-thumb-btn w-20 h-14 sm:w-24 sm:h-16 rounded-lg overflow-hidden border-2 transition-all shrink-0 cursor-pointer ${idx === 0 ? 'border-blue-600 scale-105' : 'border-slate-200 hover:border-slate-400'}"
         data-index="${idx}"
       >
-        <img src="${escapeHTML(img)}" alt="Screenshot ${idx + 1}" class="w-full h-full object-cover" />
+        <img src="${escapeHTML(img)}" alt="Screenshot ${idx + 1}" class="w-full h-full object-cover pointer-events-none" />
       </button>
     `).join('');
 
     thumbsContainer.querySelectorAll('.gallery-thumb-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
         const idx = parseInt(btn.getAttribute('data-index'), 10);
+        currentGalleryIndex = idx;
         if (coverImg && allImages[idx]) {
           coverImg.src = allImages[idx];
         }
         thumbsContainer.querySelectorAll('.gallery-thumb-btn').forEach(b => {
-          b.className = 'gallery-thumb-btn w-20 h-14 sm:w-24 sm:h-16 rounded-lg overflow-hidden border-2 transition-all shrink-0 border-slate-200 hover:border-slate-400';
+          b.className = 'gallery-thumb-btn w-20 h-14 sm:w-24 sm:h-16 rounded-lg overflow-hidden border-2 transition-all shrink-0 cursor-pointer border-slate-200 hover:border-slate-400';
         });
-        btn.className = 'gallery-thumb-btn w-20 h-14 sm:w-24 sm:h-16 rounded-lg overflow-hidden border-2 transition-all shrink-0 border-blue-600 scale-105';
+        btn.className = 'gallery-thumb-btn w-20 h-14 sm:w-24 sm:h-16 rounded-lg overflow-hidden border-2 transition-all shrink-0 cursor-pointer border-blue-600 scale-105';
       });
     });
   }

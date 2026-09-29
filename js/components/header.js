@@ -7,7 +7,8 @@ export function renderHeader(activePage = 'home') {
   const headerContainer = document.getElementById('site-header');
   if (!headerContainer) return;
 
-  headerContainer.innerHTML = `
+  if (!headerContainer.querySelector('header')) {
+    headerContainer.innerHTML = `
     <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/80 transition-all">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16 sm:h-18">
@@ -79,6 +80,7 @@ export function renderHeader(activePage = 'home') {
       </div>
     </header>
   `;
+  }
 
   // Mobile menu toggle logic
   const menuBtn = document.getElementById('mobile-menu-btn');

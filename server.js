@@ -66,6 +66,11 @@ const server = http.createServer((req, res) => {
     }
   }
 
+  // Handle nested asset paths from admin or subdirectories
+  if (pathname.includes('/assets/')) {
+    pathname = pathname.substring(pathname.indexOf('/assets/'));
+  }
+
   let filePath = path.join(BASE_DIR, pathname);
 
   // If directory, look for index.html

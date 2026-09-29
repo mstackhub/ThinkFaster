@@ -1,97 +1,20 @@
 {
-  "version": 2,
   "cleanUrls": true,
-  "routes": [
-    {
-      "src": "^/project/(.*)$",
-      "dest": "/project.html?slug=$1"
-    },
-    {
-      "src": "^/projects/(.*)$",
-      "dest": "/project.html?slug=$1"
-    },
-    {
-      "src": "^/projects$",
-      "dest": "/projects.html"
-    },
-    {
-      "src": "^/contact$",
-      "dest": "/contact.html"
-    },
-    {
-      "src": "^/about$",
-      "dest": "/about.html"
-    },
-    {
-      "src": "^/privacy$",
-      "dest": "/privacy.html"
-    },
-    {
-      "src": "^/terms$",
-      "dest": "/terms.html"
-    },
-    {
-      "src": "^/admin/?$",
-      "dest": "/admin/index.html"
-    },
-    {
-      "src": "^/admin/login$",
-      "dest": "/admin/login.html"
-    },
-    {
-      "src": "^/admin/projects$",
-      "dest": "/admin/projects.html"
-    },
-    {
-      "src": "^/admin/project-form$",
-      "dest": "/admin/project-form.html"
-    },
-    {
-      "src": "^/admin/categories$",
-      "dest": "/admin/categories.html"
-    },
-    {
-      "src": "^/admin/settings$",
-      "dest": "/admin/settings.html"
-    },
-    {
-      "handle": "filesystem"
-    },
-    {
-      "src": "/.*",
-      "status": 404,
-      "dest": "/404.html"
-    }
-  ],
+  "trailingSlash": false,
   "headers": [
     {
       "source": "/(.*)",
       "headers": [
-        {
-          "key": "X-Content-Type-Options",
-          "value": "nosniff"
-        },
-        {
-          "key": "X-Frame-Options",
-          "value": "SAMEORIGIN"
-        },
-        {
-          "key": "X-XSS-Protection",
-          "value": "1; mode=block"
-        },
-        {
-          "key": "Referrer-Policy",
-          "value": "strict-origin-when-cross-origin"
-        }
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
+        { "key": "X-XSS-Protection", "value": "1; mode=block" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
       ]
     },
     {
       "source": "/assets/(.*)",
       "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=31536000, immutable"
-        }
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
       ]
     }
   ]

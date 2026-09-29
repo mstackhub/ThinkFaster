@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Ready-made website and web application marketplace & sales page",
   "scripts": {
-    "build": "node scripts/build-static-projects.js",
+    "build:projects": "node scripts/build-static-projects.js",
     "start": "node server.js"
   },
   "keywords": [

@@ -165,11 +165,46 @@ async function loadProjectsGrid() {
     container.innerHTML = '';
     if (emptyState) {
       emptyState.classList.remove('hidden');
-      const resetBtn = document.getElementById('btn-reset-filters');
-      if (resetBtn) {
-        resetBtn.onclick = () => {
-          resetAllFilters();
-        };
+      const isFiltered = currentCategory !== 'all' || !!currentSearch || currentType !== 'all' || !!currentPriceRange;
+      if (!isFiltered) {
+        emptyState.innerHTML = `
+          <div class="w-16 h-16 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center mx-auto mb-4 text-2xl">
+            🚀
+          </div>
+          <h3 class="text-lg font-bold text-slate-800 mb-1">กำลังเตรียมเปิดตัวผลงานเร็ว ๆ นี้</h3>
+          <p class="text-sm text-slate-500 max-w-md mx-auto mb-6">
+            ทีมงานกำลังทยอยลงผลงานระบบเว็บไซต์และเว็บแอปพลิเคชันพร้อมใช้งาน สามารถติดต่อสอบถามหรือสั่งทำระบบเฉพาะทางได้ทันที
+          </p>
+          <a
+            href="contact.html"
+            class="inline-flex items-center px-5 py-2.5 text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-xl shadow-md transition-colors"
+          >
+            ติดต่อสอบถาม / สั่งทำระบบ
+          </a>
+        `;
+      } else {
+        emptyState.innerHTML = `
+          <div class="w-16 h-16 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center mx-auto mb-4 text-2xl">
+            🔍
+          </div>
+          <h3 class="text-lg font-bold text-slate-800 mb-1">ไม่พบระบบที่ตรงกับคำค้นหา</h3>
+          <p class="text-sm text-slate-500 max-w-md mx-auto mb-6">
+            ลองเปลี่ยนคำค้นหา หรือกดรีเซ็ตตัวกรองเพื่อดูรายการระบบทั้งหมดที่มีอยู่ในขณะนี้
+          </p>
+          <button
+            id="btn-reset-filters"
+            type="button"
+            class="inline-flex items-center px-4 py-2 text-sm font-semibold text-blue-600 bg-blue-50 hover:bg-blue-100 rounded-xl transition-colors"
+          >
+            ล้างตัวกรองทั้งหมด
+          </button>
+        `;
+        const resetBtn = document.getElementById('btn-reset-filters');
+        if (resetBtn) {
+          resetBtn.onclick = () => {
+            resetAllFilters();
+          };
+        }
       }
     }
     return;

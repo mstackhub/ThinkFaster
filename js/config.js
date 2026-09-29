@@ -4,7 +4,7 @@
 export const CONFIG = {
   SITE_NAME: "ThinkFaster",
   DEFAULT_CURRENCY: "THB",
-  LOCAL_STORAGE_PROJECTS_KEY: "thinkfaster_projects_v3",
+  LOCAL_STORAGE_PROJECTS_KEY: "thinkfaster_projects_v4",
   LOCAL_STORAGE_CATEGORIES_KEY: "thinkfaster_categories_v1",
   LOCAL_STORAGE_SETTINGS_KEY: "thinkfaster_settings_v1",
   LOCAL_STORAGE_TRACKING_KEY: "thinkfaster_tracking_v1",

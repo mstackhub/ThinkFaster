@@ -140,7 +140,7 @@ export async function getCategories(options = { activeOnly: true }) {
         query = query.eq('is_active', true);
       }
       const { data, error } = await query;
-      if (!error && data && data.length > 0) {
+      if (!error && Array.isArray(data)) {
         categories = data;
         localStorage.setItem(CONFIG.LOCAL_STORAGE_CATEGORIES_KEY, JSON.stringify(categories));
       }
@@ -254,7 +254,7 @@ export async function getProjects(options = {}) {
         q = q.in('status', ['published', 'coming_soon']);
       }
       const { data, error } = await q;
-      if (!error && data && data.length > 0) {
+      if (!error && Array.isArray(data)) {
         projects = data;
         localStorage.setItem(CONFIG.LOCAL_STORAGE_PROJECTS_KEY, JSON.stringify(projects));
       }

@@ -32,53 +32,53 @@
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
         <!-- LINE OA -->
         <a
-          href="https://line.me/ti/p/@thinkfaster"
+          href="https://lin.ee/9rqSSpD"
           target="_blank"
           rel="noopener noreferrer"
           id="contact-line-card"
-          class="p-6 rounded-3xl bg-white border border-slate-200/90 shadow-sm hover:border-emerald-300 hover:shadow-md transition-all group flex flex-col items-center text-center"
+          class="p-6 rounded-3xl bg-white border border-slate-200/90 shadow-sm hover:border-emerald-300 hover:shadow-md transition-all group flex flex-col items-center text-center cursor-pointer"
         >
           <div class="w-14 h-14 rounded-2xl bg-emerald-50 text-emerald-600 font-bold flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
             LINE
           </div>
           <h3 class="font-bold text-slate-900 text-base mb-1">LINE Official Account</h3>
           <p class="text-xs text-slate-500 mb-3">ตอบกลับไวที่สุดในเวลาทำการ</p>
-          <span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full">
-            @thinkfaster
+          <span id="contact-line-badge" class="text-xs font-bold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full">
+            lin.ee/9rqSSpD
           </span>
         </a>
 
         <!-- Facebook Messenger -->
         <a
-          href="https://m.me/thinkfasterapp"
+          href="https://m.me/1390359610819720"
           target="_blank"
           rel="noopener noreferrer"
           id="contact-messenger-card"
-          class="p-6 rounded-3xl bg-white border border-slate-200/90 shadow-sm hover:border-blue-300 hover:shadow-md transition-all group flex flex-col items-center text-center"
+          class="p-6 rounded-3xl bg-white border border-slate-200/90 shadow-sm hover:border-blue-300 hover:shadow-md transition-all group flex flex-col items-center text-center cursor-pointer"
         >
           <div class="w-14 h-14 rounded-2xl bg-blue-50 text-blue-600 font-bold flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
             FB
           </div>
           <h3 class="font-bold text-slate-900 text-base mb-1">Facebook Messenger</h3>
           <p class="text-xs text-slate-500 mb-3">คุยผ่านเพจ ThinkFaster</p>
-          <span class="text-xs font-bold text-blue-600 bg-blue-50 px-3 py-1 rounded-full">
-            m.me/thinkfasterapp
+          <span id="contact-messenger-badge" class="text-xs font-bold text-blue-600 bg-blue-50 px-3 py-1 rounded-full">
+            m.me/1390359610819720
           </span>
         </a>
 
         <!-- Phone Call -->
         <a
-          href="tel:0812345678"
+          href="tel:0624971498"
           id="contact-phone-card"
-          class="p-6 rounded-3xl bg-white border border-slate-200/90 shadow-sm hover:border-amber-300 hover:shadow-md transition-all group flex flex-col items-center text-center"
+          class="p-6 rounded-3xl bg-white border border-slate-200/90 shadow-sm hover:border-amber-300 hover:shadow-md transition-all group flex flex-col items-center text-center cursor-pointer"
         >
           <div class="w-14 h-14 rounded-2xl bg-amber-50 text-amber-600 font-bold flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
             📞
           </div>
           <h3 class="font-bold text-slate-900 text-base mb-1">โทรศัพท์สายด่วน</h3>
           <p class="text-xs text-slate-500 mb-3">ปรึกษาโครงการเร่งด่วน</p>
-          <span class="text-xs font-bold text-amber-600 bg-amber-50 px-3 py-1 rounded-full">
-            081-234-5678
+          <span id="contact-phone-badge" class="text-xs font-bold text-amber-600 bg-amber-50 px-3 py-1 rounded-full">
+            062-497-1498
           </span>
         </a>
       </div>
@@ -118,13 +118,42 @@
       renderFooter(settings);
       renderFloatingContact(settings);
 
-      document.getElementById('contact-line-card')?.addEventListener('click', () => {
+      const contacts = settings.contacts || {};
+
+      const lineCard = document.getElementById('contact-line-card');
+      if (lineCard && contacts.line?.url) {
+        lineCard.href = contacts.line.url;
+      }
+      const lineBadge = document.getElementById('contact-line-badge');
+      if (lineBadge && contacts.line?.url) {
+        lineBadge.textContent = contacts.line.url.replace('https://', '');
+      }
+
+      const messengerCard = document.getElementById('contact-messenger-card');
+      if (messengerCard && contacts.messenger?.url) {
+        messengerCard.href = contacts.messenger.url;
+      }
+      const messengerBadge = document.getElementById('contact-messenger-badge');
+      if (messengerBadge && contacts.messenger?.url) {
+        messengerBadge.textContent = contacts.messenger.url.replace('https://', '');
+      }
+
+      const phoneCard = document.getElementById('contact-phone-card');
+      if (phoneCard && contacts.phone?.number) {
+        phoneCard.href = `tel:${contacts.phone.number}`;
+      }
+      const phoneBadge = document.getElementById('contact-phone-badge');
+      if (phoneBadge && (contacts.phone?.display || contacts.phone?.number)) {
+        phoneBadge.textContent = contacts.phone.display || contacts.phone.number;
+      }
+
+      lineCard?.addEventListener('click', () => {
         trackEvent('click_line', { location: 'contact_page' });
       });
-      document.getElementById('contact-messenger-card')?.addEventListener('click', () => {
+      messengerCard?.addEventListener('click', () => {
         trackEvent('click_messenger', { location: 'contact_page' });
       });
-      document.getElementById('contact-phone-card')?.addEventListener('click', () => {
+      phoneCard?.addEventListener('click', () => {
         trackEvent('click_phone', { location: 'contact_page' });
       });
     });

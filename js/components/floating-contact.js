@@ -9,10 +9,10 @@ export function renderFloatingContact(settings = {}) {
   if (!container) return;
 
   const contacts = settings.contacts || {};
-  const lineUrl = contacts.line?.url || 'https://line.me';
-  const messengerUrl = contacts.messenger?.url || 'https://m.me';
-  const phone = contacts.phone?.number || '0812345678';
-  const phoneDisplay = contacts.phone?.display || '081-234-5678';
+  const lineUrl = contacts.line?.url || 'https://lin.ee/9rqSSpD';
+  const messengerUrl = contacts.messenger?.url || 'https://m.me/1390359610819720';
+  const phone = contacts.phone?.number || '0624971498';
+  const phoneDisplay = contacts.phone?.display || '062-497-1498';
 
   container.innerHTML = `
     <!-- Floating Backdrop (closes menu when clicked) -->

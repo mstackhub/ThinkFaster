@@ -23,19 +23,19 @@
   "contacts": {
     "line": {
       "enabled": true,
-      "id": "@thinkfaster",
-      "url": "https://line.me/ti/p/@thinkfaster",
+      "id": "https://lin.ee/9rqSSpD",
+      "url": "https://lin.ee/9rqSSpD",
       "label": "LINE Official Account"
     },
     "messenger": {
       "enabled": true,
-      "url": "https://m.me/thinkfasterapp",
+      "url": "https://m.me/1390359610819720",
       "label": "Facebook Messenger"
     },
     "phone": {
       "enabled": true,
-      "number": "0812345678",
-      "display": "081-234-5678",
+      "number": "0624971498",
+      "display": "062-497-1498",
       "label": "โทรศัพท์สายด่วน"
     },
     "facebook": {

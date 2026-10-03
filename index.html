@@ -212,17 +212,22 @@
                 class="w-full object-cover aspect-video-box group-hover:opacity-95 transition-opacity"
                 onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=80';"
               />
-              <div class="p-4 bg-white flex items-center justify-between">
-                <div>
-                  <div class="text-xs font-semibold text-blue-600 flex items-center gap-1">
-                    Featured System
-                    <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              <div class="p-4 sm:p-5 bg-white flex items-center justify-between gap-3 border-t border-slate-100">
+                <div class="min-w-0 flex-1">
+                  <div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-blue-50 text-blue-600 text-[11px] font-bold mb-1">
+                    <span class="w-1.5 h-1.5 rounded-full bg-blue-600 animate-pulse"></span>
+                    <span>Featured System</span>
                   </div>
-                  <div class="text-sm font-bold text-slate-800 group-hover:text-blue-600 transition-colors">ระบบจัดการเมนู (เหมาะกับร้านค้าขนาดเล็ก)</div>
+                  <div class="text-sm sm:text-base font-extrabold text-slate-900 group-hover:text-blue-600 transition-colors truncate">
+                    ระบบจัดการเมนู (สำหรับร้านอาหาร & คาเฟ่)
+                  </div>
                 </div>
-                <span class="px-2.5 py-1 text-xs font-semibold rounded bg-emerald-50 text-emerald-700 border border-emerald-200">
-                  เปิดดู Demo
-                </span>
+                <div class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-slate-900 group-hover:bg-blue-600 text-white font-semibold text-xs sm:text-sm shadow-sm transition-all duration-200 shrink-0 whitespace-nowrap">
+                  <span>เปิดดู Demo</span>
+                  <svg class="w-4 h-4 text-blue-400 group-hover:text-white transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </div>
               </div>
             </a>
           </div>
@@ -383,58 +388,74 @@
   </section>
 
   <!-- How It Works Section (Requirement #32) -->
-  <section class="py-16 bg-white border-t border-slate-200/80">
+  <section class="py-14 sm:py-20 bg-white border-t border-slate-200/80 overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-2xl mx-auto mb-12">
+      <div class="text-center max-w-2xl mx-auto mb-8 sm:mb-14">
         <span class="inline-block text-xs font-bold uppercase tracking-wider text-blue-600 mb-3">ขั้นตอนง่าย ๆ</span>
         <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">เริ่มต้นใช้งานได้ใน 5 ขั้นตอน</h2>
-        <p class="text-sm text-slate-600 mt-3">ไม่ต้องมีขั้นตอนซับซ้อน ไม่ต้องจ่ายเงินออนไลน์ทันที คุยกับทีมงานได้โดยตรง</p>
+        <p class="text-sm text-slate-600 mt-2.5">ไม่ต้องมีขั้นตอนซับซ้อน ไม่ต้องจ่ายเงินออนไลน์ทันที คุยกับทีมงานได้โดยตรง</p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-5 gap-6 text-center">
-        <!-- Step 1 -->
-        <div class="p-5 rounded-2xl bg-slate-50 border border-slate-100 flex flex-col items-center">
-          <div class="w-12 h-12 rounded-xl bg-blue-600 text-white font-bold flex items-center justify-center text-lg mb-4 shadow-sm shadow-blue-500/20">
-            1
+      <!-- Mobile Horizontal Card Slider (Swipeable) / Desktop 5-Col Grid -->
+      <div class="relative">
+        <div
+          id="steps-slider"
+          class="flex md:grid md:grid-cols-5 gap-4 sm:gap-6 overflow-x-auto md:overflow-x-visible pb-4 md:pb-0 snap-x snap-mandatory hide-scrollbar -mx-4 px-4 sm:mx-0 sm:px-0"
+        >
+          <!-- Step 1 -->
+          <div class="w-[260px] sm:w-[280px] md:w-auto shrink-0 snap-center p-6 rounded-3xl bg-slate-50 border border-slate-200/80 shadow-xs hover:border-blue-300 hover:shadow-md transition-all flex flex-col items-center text-center group">
+            <div class="w-12 h-12 rounded-2xl bg-blue-600 text-white font-extrabold flex items-center justify-center text-lg mb-3.5 shadow-md shadow-blue-600/25 group-hover:scale-110 transition-transform">
+              1
+            </div>
+            <span class="text-[11px] font-bold text-blue-600 bg-blue-50 px-2.5 py-0.5 rounded-full mb-2">Step 1</span>
+            <h3 class="font-bold text-slate-900 text-base mb-1.5">เลือกระบบ</h3>
+            <p class="text-xs text-slate-500 leading-relaxed">เลือกดูระบบเว็บไซต์ที่ตรงกับความต้องการและธุรกิจของคุณ</p>
           </div>
-          <h3 class="font-bold text-slate-900 text-sm mb-1.5">เลือกระบบ</h3>
-          <p class="text-xs text-slate-500 leading-relaxed">เลือกดูระบบเว็บไซต์ที่ตรงกับความต้องการและธุรกิจของคุณ</p>
+
+          <!-- Step 2 -->
+          <div class="w-[260px] sm:w-[280px] md:w-auto shrink-0 snap-center p-6 rounded-3xl bg-slate-50 border border-slate-200/80 shadow-xs hover:border-blue-300 hover:shadow-md transition-all flex flex-col items-center text-center group">
+            <div class="w-12 h-12 rounded-2xl bg-blue-600 text-white font-extrabold flex items-center justify-center text-lg mb-3.5 shadow-md shadow-blue-600/25 group-hover:scale-110 transition-transform">
+              2
+            </div>
+            <span class="text-[11px] font-bold text-blue-600 bg-blue-50 px-2.5 py-0.5 rounded-full mb-2">Step 2</span>
+            <h3 class="font-bold text-slate-900 text-base mb-1.5">เปิดดู Demo</h3>
+            <p class="text-xs text-slate-500 leading-relaxed">กดทดลองใช้งานหน้าเว็บไซต์และระบบจริงบน Vercel ได้ทันที</p>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="w-[260px] sm:w-[280px] md:w-auto shrink-0 snap-center p-6 rounded-3xl bg-slate-50 border border-slate-200/80 shadow-xs hover:border-blue-300 hover:shadow-md transition-all flex flex-col items-center text-center group">
+            <div class="w-12 h-12 rounded-2xl bg-blue-600 text-white font-extrabold flex items-center justify-center text-lg mb-3.5 shadow-md shadow-blue-600/25 group-hover:scale-110 transition-transform">
+              3
+            </div>
+            <span class="text-[11px] font-bold text-blue-600 bg-blue-50 px-2.5 py-0.5 rounded-full mb-2">Step 3</span>
+            <h3 class="font-bold text-slate-900 text-base mb-1.5">ติดต่อสอบถาม</h3>
+            <p class="text-xs text-slate-500 leading-relaxed">กดปุ่มคัดลอกข้อมูล แล้วส่งเข้า LINE OA, Messenger หรือโทรหาเรา</p>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="w-[260px] sm:w-[280px] md:w-auto shrink-0 snap-center p-6 rounded-3xl bg-slate-50 border border-slate-200/80 shadow-xs hover:border-blue-300 hover:shadow-md transition-all flex flex-col items-center text-center group">
+            <div class="w-12 h-12 rounded-2xl bg-blue-600 text-white font-extrabold flex items-center justify-center text-lg mb-3.5 shadow-md shadow-blue-600/25 group-hover:scale-110 transition-transform">
+              4
+            </div>
+            <span class="text-[11px] font-bold text-blue-600 bg-blue-50 px-2.5 py-0.5 rounded-full mb-2">Step 4</span>
+            <h3 class="font-bold text-slate-900 text-base mb-1.5">ปรับแต่งข้อมูล</h3>
+            <p class="text-xs text-slate-500 leading-relaxed">ส่งโลโก้ สี รูปภาพ และข้อมูลธุรกิจเพื่อให้ทีมงานปรับแต่งให้พร้อมใช้</p>
+          </div>
+
+          <!-- Step 5 -->
+          <div class="w-[260px] sm:w-[280px] md:w-auto shrink-0 snap-center p-6 rounded-3xl bg-emerald-50/70 border border-emerald-200/80 shadow-xs hover:border-emerald-300 hover:shadow-md transition-all flex flex-col items-center text-center group">
+            <div class="w-12 h-12 rounded-2xl bg-emerald-600 text-white font-extrabold flex items-center justify-center text-lg mb-3.5 shadow-md shadow-emerald-600/25 group-hover:scale-110 transition-transform">
+              5
+            </div>
+            <span class="text-[11px] font-bold text-emerald-700 bg-emerald-100 px-2.5 py-0.5 rounded-full mb-2">สำเร็จ 24-48 ชม.</span>
+            <h3 class="font-bold text-slate-900 text-base mb-1.5">ส่งมอบเว็บไซต์</h3>
+            <p class="text-xs text-slate-600 leading-relaxed">ส่งมอบเว็บไซต์และซอร์สโค้ดพร้อมขึ้นออนไลน์ ภายใน 24-48 ชั่วโมง</p>
+          </div>
         </div>
 
-        <!-- Step 2 -->
-        <div class="p-5 rounded-2xl bg-slate-50 border border-slate-100 flex flex-col items-center">
-          <div class="w-12 h-12 rounded-xl bg-blue-600 text-white font-bold flex items-center justify-center text-lg mb-4 shadow-sm shadow-blue-500/20">
-            2
-          </div>
-          <h3 class="font-bold text-slate-900 text-sm mb-1.5">เปิดดู Demo</h3>
-          <p class="text-xs text-slate-500 leading-relaxed">กดทดลองใช้งานหน้าเว็บไซต์และระบบจริงบน Vercel ได้ทันที</p>
-        </div>
-
-        <!-- Step 3 -->
-        <div class="p-5 rounded-2xl bg-slate-50 border border-slate-100 flex flex-col items-center">
-          <div class="w-12 h-12 rounded-xl bg-blue-600 text-white font-bold flex items-center justify-center text-lg mb-4 shadow-sm shadow-blue-500/20">
-            3
-          </div>
-          <h3 class="font-bold text-slate-900 text-sm mb-1.5">ติดต่อสอบถาม</h3>
-          <p class="text-xs text-slate-500 leading-relaxed">กดปุ่มคัดลอกข้อมูล แล้วส่งเข้า LINE OA, Messenger หรือโทรหาเรา</p>
-        </div>
-
-        <!-- Step 4 -->
-        <div class="p-5 rounded-2xl bg-slate-50 border border-slate-100 flex flex-col items-center">
-          <div class="w-12 h-12 rounded-xl bg-blue-600 text-white font-bold flex items-center justify-center text-lg mb-4 shadow-sm shadow-blue-500/20">
-            4
-          </div>
-          <h3 class="font-bold text-slate-900 text-sm mb-1.5">ปรับแต่งข้อมูล</h3>
-          <p class="text-xs text-slate-500 leading-relaxed">ส่งโลโก้ สี รูปภาพ และข้อมูลธุรกิจเพื่อให้ทีมงานปรับแต่งให้พร้อมใช้</p>
-        </div>
-
-        <!-- Step 5 -->
-        <div class="p-5 rounded-2xl bg-slate-50 border border-slate-100 flex flex-col items-center">
-          <div class="w-12 h-12 rounded-xl bg-emerald-600 text-white font-bold flex items-center justify-center text-lg mb-4 shadow-sm shadow-emerald-500/20">
-            5
-          </div>
-          <h3 class="font-bold text-slate-900 text-sm mb-1.5">ส่งมอบเว็บไซต์</h3>
-          <p class="text-xs text-slate-500 leading-relaxed">ส่งมอบเว็บไซต์และซอร์สโค้ดพร้อมขึ้นออนไลน์ ภายใน 24-48 ชั่วโมง</p>
+        <!-- Mobile Scroll Indicator Hint -->
+        <div class="flex md:hidden items-center justify-center gap-1.5 pt-3 text-xs text-slate-400 font-medium">
+          <span>👈 เลื่อนดูขั้นตอน (1 - 5) 👉</span>
         </div>
       </div>
     </div>

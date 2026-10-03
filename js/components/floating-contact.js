@@ -19,7 +19,7 @@ export function renderFloatingContact(settings = {}) {
     <div id="floating-backdrop" class="fixed inset-0 z-40 bg-slate-900/20 backdrop-blur-[1px] hidden transition-opacity"></div>
 
     <!-- Floating Contact Menu & Button -->
-    <div class="fixed bottom-6 right-5 sm:bottom-8 sm:right-8 z-50 flex flex-col items-end">
+    <div id="floating-contact-wrapper" class="fixed bottom-6 right-5 sm:bottom-8 sm:right-8 z-50 flex flex-col items-end">
       <!-- Expanded Contact Menu -->
       <div id="floating-menu" class="hidden mb-3 w-64 bg-white rounded-2xl shadow-2xl border border-slate-200/90 p-3 space-y-2 animate-slide-up">
         <div class="px-2 pt-1 pb-2 border-b border-slate-100 flex items-center justify-between">

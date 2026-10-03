@@ -38,11 +38,11 @@ async function initHomePage() {
         const line1 = escapeHTML(parts[0].trim());
         const line2 = escapeHTML(parts.slice(1).join(' ').trim());
         heroTitle.innerHTML = `
-          <span class="block whitespace-nowrap">${line1}</span>
+          <span class="block whitespace-normal sm:whitespace-nowrap">${line1}</span>
           <span class="inline-block mt-1 sm:mt-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 pb-2 sm:pb-3">${line2}</span>
         `;
       } else {
-        heroTitle.innerHTML = `<span class="block whitespace-nowrap">${escapeHTML(settings.hero.title)}</span>`;
+        heroTitle.innerHTML = `<span class="block whitespace-normal sm:whitespace-nowrap">${escapeHTML(settings.hero.title)}</span>`;
       }
     }
     if (heroSubtitle && settings.hero.subtitle) heroSubtitle.innerText = settings.hero.subtitle;

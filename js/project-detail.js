@@ -389,6 +389,13 @@ function setupMobileStickyBar(p, price, formattedPrice, isComingSoon) {
   if (!stickyBar) return;
   stickyBar.classList.remove('hidden');
 
+  // Lift floating contact button so it sits neatly above sticky bar on mobile
+  const floatingWrapper = document.getElementById('floating-contact-wrapper');
+  if (floatingWrapper) {
+    floatingWrapper.classList.remove('bottom-6');
+    floatingWrapper.classList.add('bottom-20', 'sm:bottom-8');
+  }
+
   if (stickyPrice) stickyPrice.textContent = formattedPrice;
 
   if (stickyDemo) {

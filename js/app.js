@@ -55,6 +55,44 @@ async function initHomePage() {
   await loadProjectsGrid();
 
   setupSearchAndFilters();
+  setupStepsSlider();
+}
+
+function setupStepsSlider() {
+  const slider = document.getElementById('steps-slider');
+  const prevBtn = document.getElementById('step-prev-btn');
+  const nextBtn = document.getElementById('step-next-btn');
+  const dots = document.querySelectorAll('.step-dot');
+
+  if (!slider) return;
+
+  if (prevBtn) {
+    prevBtn.addEventListener('click', () => {
+      slider.scrollBy({ left: -280, behavior: 'smooth' });
+    });
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+      slider.scrollBy({ left: 280, behavior: 'smooth' });
+    });
+  }
+
+  if (dots.length > 0) {
+    slider.addEventListener('scroll', () => {
+      const scrollLeft = slider.scrollLeft;
+      const cardWidth = slider.scrollWidth / 5;
+      const activeIdx = Math.min(Math.max(Math.round(scrollLeft / cardWidth), 0), 4);
+
+      dots.forEach((dot, idx) => {
+        if (idx === activeIdx) {
+          dot.className = 'step-dot w-6 h-2 rounded-full bg-blue-600 transition-all duration-300';
+        } else {
+          dot.className = 'step-dot w-2 h-2 rounded-full bg-slate-200 transition-all duration-300';
+        }
+      });
+    }, { passive: true });
+  }
 }
 
 if (document.readyState === 'loading') {
